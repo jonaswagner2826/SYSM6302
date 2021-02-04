@@ -1,0 +1,19 @@
+if ( !window.AllyIntegration )
+{
+  var AllyIntegration =
+  {};
+
+  AllyIntegration.initJWT = function( jwt )
+  {
+    window.ALLY_TOKEN = jwt;
+  };
+
+  AllyIntegration.initAllyJSConfigs = function( baseUrl, clientId )
+  {
+    window.ALLY_CFG =
+    {
+        'baseUrl' : baseUrl,
+        'clientId' : clientId
+    };
+  };
+}
