@@ -1,0 +1,7 @@
+Network: FRC Teams and matches (Qual and Elim) with other teams
+
+Use Blue Alliance and standard API... can get data in a great json file for easy usage...
+
+Current thought is a uniderectional graph with each team being connected unidirectionally with +score to alliance partners and -score to their oponents for every match...
+
+Theoretically could do with just a single event (champs) or could do with full season... or even multiple seasons... depends on how easy it ends up being
