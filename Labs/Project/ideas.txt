@@ -5,3 +5,9 @@ Use Blue Alliance and standard API... can get data in a great json file for easy
 Current thought is a uniderectional graph with each team being connected unidirectionally with +score to alliance partners and -score to their oponents for every match...
 
 Theoretically could do with just a single event (champs) or could do with full season... or even multiple seasons... depends on how easy it ends up being
+
+
+API notes:
+- query example: https://gist.github.com/MC42/a4f11fec13f9e9139cfe53c5419d7bac
+- Auth Key: 7uiNdsPDiLnsKapBtr3IlZfb4wYGkvpPD9IpyCd5wxKt0f1KPVx8AzWkqadHeoy0
+
