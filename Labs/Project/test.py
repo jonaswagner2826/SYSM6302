@@ -10,4 +10,7 @@ import TBA_database_access as tba
 #     teams = tba.getTBA('event/' + event + '/teams/keys')
 
 team = 171
-teamEventKeys = tba.getTeamEventKeys(team)
+teamMatchKeys = tba.getTeamMatchKeys(team)
+
+
+teams = tba.getTeamsKeys()
