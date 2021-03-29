@@ -10,9 +10,6 @@ import requests
 import json
 
 
-
-
-
 def getTBA(url, baseURL = 'http://www.thebluealliance.com/api/v3/',
            header = {'X-TBA-Auth-Key': '7uiNdsPDiLnsKapBtr3IlZfb4wYGkvpPD9IpyCd5wxKt0f1KPVx8AzWkqadHeoy0'}):
     """
@@ -34,7 +31,6 @@ def getTBA(url, baseURL = 'http://www.thebluealliance.com/api/v3/',
     return requests.get(baseURL + url, headers = header).json()
 
 
-
 # Event Specific Queries
 def getEventKeys(year):
     return getTBA('events/' + year + '/keys')
@@ -42,26 +38,47 @@ def getEventKeys(year):
 def getEventTeamsKeys(event):
     return getTBA('event/' + event + '/teams/keys')
 
+def getEventTeamsInfo(event):
+    return getTBA('event/' + event + '/teams')
+
 def getEventMatchKeys(event):
     return getTBA('event/' + event + '/matches/keys')
 
 
-
 # Team Specific Queries
+def getTeamInfo(team, year = -1):
+    return getTBA('team/' + 'frc' + str(team))
+    
+
 def getTeamsKeys(year = -1, pageNum = -1, maxPages = 20):
     if year == -1:
         year = ''
     else:
         year = (str(year) + '/')
-    
     if pageNum != -1:
         keys = getTBA('teams/' + year + str(pageNum) + '/keys')
     else:
         keys = list()
         for pageNum in range(maxPages):
             keys.extend(getTBA('teams/' + year + str(pageNum) + '/keys'))
-    return keys
-    
+    return 
+
+
+def getTeamsInfo(year = -1, pageNum = -1, maxPages = 20):
+    if year == -1:
+        year = ''
+    else:
+        year = (str(year) + '/')
+    if pageNum != -1:
+        data = getTBA('teams/' + year + str(pageNum))
+    else:
+        data = list()
+        for pageNum in range(maxPages):
+            data.extend(getTBA('teams/' + year + str(pageNum)))
+    return data
+
+  
+
 def getTeamEventKeys(team, year = -1):
     if year == -1:
         year = ''
@@ -74,11 +91,34 @@ def getTeamMatchKeys(team, year = -1, event = -1):
     if year != -1 and event != -1:
         print('Event key superciding year')
     
+    if type(team) != str:
+        team = 'frc' + str(team)
+    
     if event != -1:
-        keys = getTBA('team/' + 'frc' + str(team) + '/event/' + event 
+        keys = getTBA('team/' + str(team) + '/event/' + event 
                       + '/matches/keys')
     elif year != -1:
-        keys = getTBA('team/' + 'frc' + str(team) + '/matches/' + str(year)
+        keys = getTBA('team/' + str(team) + '/matches/' + str(year)
                       + '/keys')
+    return keys
 
+def getTeamMatchData(team, year = -1, event = -1):
+    if year != -1 and event != -1:
+        print('Event key superciding year')
     
+    if event != -1:
+        data = getTBA('team/' + 'frc' + str(team) + '/event/' + event 
+                      + '/matches')
+    elif year != -1:
+        data = getTBA('team/' + 'frc' + str(team) + '/matches/' + str(year))
+    return data
+
+
+# Match Specific Queries
+def getMatchInfo(key, simple = True):
+    if simple == True:
+        matchInfo = getTBA('match/' + key + '/simple')
+    else:
+        matchInfo = getTBA('match/' + key)
+    return matchInfo
+
