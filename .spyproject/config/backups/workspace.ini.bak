@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['Labs\\Lab4\\randomnet.py']
+recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\\TBA_Network_Analysis.py']
 
