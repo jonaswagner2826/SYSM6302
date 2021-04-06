@@ -17,7 +17,7 @@ class TBA_Network:
     def __init__(self, year = -1, event = -1,
                  nodeType = 'team', edgeType = 'match',
                  nodeMeta = ['nickname', 'name', 'state_prov', 'country'],
-                 edgeMeta = ['event', ]):
+                 edgeMeta = ['event']):
         # Event Conditioning
         if str(event) != str(-1):
             print('Event Superseding year')
@@ -36,29 +36,13 @@ class TBA_Network:
             if event != -1:
                 self.nodeKeys = tba.getEventTeamsKeys(event)
                 self.nodeData = tba.getEventTeamsInfo(event)
+                self.year = event[0:4]
             elif year != -1:
                 self.nodeKeys = tba.getTeamsKeys(year)
                 self.nodeData = tba.getTeamsInfo(year)
         else:
             print('Node type not coded yet')
         
-        # Edge Keys and Data
-        edgeKeys = list()
-        edgeData = dict()
-        if edgeType == 'match':
-            if nodeType == 'team':
-                for node in self.nodeKeys:
-                    tempKeys = tba.getTeamMatchKeys(node, year, event)
-                    for key in tempKeys:
-                        if key not in edgeKeys:
-                            edgeKeys.append(key)
-                            edgeData[key] = tba.getMatchInfo(key)
-                self.edgeKeys = edgeKeys
-                self.edgeData = edgeData
-            else:
-                print('Only match/team coded')
-        else:
-            print('Only match/team coded')
         
         # MultGraph definition
         self.G = nx.MultiGraph(year = self.year,
@@ -67,6 +51,34 @@ class TBA_Network:
                                edgeType = self.edgeType,
                                nodeMeta = self.nodeMeta,
                                edgeMeta = self.edgeMeta)
+        
+        # Edge Keys and Data
+        edgeKeys = list()
+        edgeData = dict()
+        if edgeType == 'match' and nodeType == 'team':
+            # Generate Nodes from team keys
+            # attributes = zip(self.nodeKeys, self.nodeData.values())
+            self.G.add_nodes_from(self.nodeKeys)
+            self.G = nx.set_node_attributes(self.G, self.nodeData)
+            # node and nodeKeys refer to individual teams
+            for node in self.nodeKeys:
+                # teamMatchData is a list of all matchs a team plays (event or year)
+                teamMatchData = tba.getTeamMatchData(node, year, event)
+                for match in teamMatchData:
+                    # This is for every match key (ovoid repeat)
+                    if match['key'] not in edgeKeys:
+                        # Save match key and data for TBA_network data
+                        edgeKeys.append(match['key'])
+                        edgeData[match['key']] = match
+                        # G.
+            self.edgeKeys = edgeKeys
+            self.edgeData = edgeData
+        else:
+            print('Only match/team coded')
+        
+
+        
+        
         
         # # Node Data
         # if nodeType == 'team':
@@ -86,5 +98,18 @@ class TBA_Network:
         #         print('Only match/team coded')
         # else:
         #     print('Only match/team coded')
+    
+    
+    def TeamKeys(self):
+        if self.nodeType == 'team':
+            return self.nodeKeys
+        else:
+            return -1 #not coded yet
+        
+    def MatchKeys(self):
+        if self.edgeType == 'match':
+            return self.edgeKeys
+        else:
+            return -1 #not coded yet
         
     

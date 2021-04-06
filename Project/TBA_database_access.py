@@ -39,7 +39,8 @@ def getEventTeamsKeys(event):
     return getTBA('event/' + event + '/teams/keys')
 
 def getEventTeamsInfo(event):
-    return getTBA('event/' + event + '/teams')
+    data = getTBA('event/' + event + '/teams')
+    return {item['key']:item for item in data} #converts to dict
 
 def getEventMatchKeys(event):
     return getTBA('event/' + event + '/matches/keys')
@@ -75,7 +76,7 @@ def getTeamsInfo(year = -1, pageNum = -1, maxPages = 20):
         data = list()
         for pageNum in range(maxPages):
             data.extend(getTBA('teams/' + year + str(pageNum)))
-    return data
+    return {item['key']:item for item in data} #converts to dict
 
   
 
@@ -106,11 +107,13 @@ def getTeamMatchData(team, year = -1, event = -1):
     if year != -1 and event != -1:
         print('Event key superciding year')
     
+    if len(team) < 4:
+        team = 'frc' + team
     if event != -1:
-        data = getTBA('team/' + 'frc' + str(team) + '/event/' + event 
+        data = getTBA('team/' + str(team) + '/event/' + event 
                       + '/matches')
     elif year != -1:
-        data = getTBA('team/' + 'frc' + str(team) + '/matches/' + str(year))
+        data = getTBA('team/' + str(team) + '/matches/' + str(year))
     return data
 
 
