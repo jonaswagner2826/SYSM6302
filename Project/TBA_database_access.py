@@ -33,7 +33,7 @@ def getTBA(url, baseURL = 'http://www.thebluealliance.com/api/v3/',
 
 # Event Specific Queries
 def getEventKeys(year):
-    return getTBA('events/' + year + '/keys')
+    return getTBA('events/' + str(year) + '/keys')
 
 def getEventTeamsKeys(event):
     return getTBA('event/' + event + '/teams/keys')
@@ -44,6 +44,9 @@ def getEventTeamsInfo(event):
 
 def getEventMatchKeys(event):
     return getTBA('event/' + event + '/matches/keys')
+
+def getEventMatchData(event):
+    return getTBA('event/' + event + '/matches')
 
 
 # Team Specific Queries

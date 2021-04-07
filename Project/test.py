@@ -1,4 +1,5 @@
 import numpy as np
+import networkx as nx
 import requests
 
 # Module with functions for accessing TBA database
@@ -24,18 +25,31 @@ import time
 
 # teams = tba.getTeamsKeys()
 
-
-event = '2015cmp'
+year = '2015'
+event = '2015hop'
 ## Build Network
+"""
+Notes on timing of graph build:
+    - Regular event (hopper sub-division) around 20 sec w/ projection 10 w/out
+    - Full season (2015) (gave up on it...)
+    ... timming probably messed up by mining... idk by how much though
+    ... idk yet not done (bottleneck is probably api speed... 0.2 ish Mbps download at full)
+    ... curretly it is pulling 6 times for each match!!!!
+    ... could also be ram I guess... it's up to 75% usage... but isn't using more then brave...
+    - Full Season (2015) after redoing the structure of the requests (event based instead of node based)
+    ... 66 sec!!!! awesome!
+"""
 tic = time.time()
-tbaNetwork = TBA_Network(event = event)
+tbaNetwork = TBA_Network(year = year)
+# tbaNetwork = TBA_Network(event = event)
 toc = time.time()
 print('Build Time =', toc - tic)
-    
 
 
+filename = 'TBA_Network_' + str(tbaNetwork.year)
 # TBA_Network data explicit
 G = tbaNetwork.G
+nx.write_gml(G, filename)
 nodeKeys = tbaNetwork.nodeKeys
 nodeData = tbaNetwork.nodeData
 edgeKeys = tbaNetwork.edgeKeys
@@ -43,8 +57,9 @@ edgeData = tbaNetwork.edgeData
 
 
 
+
 # Test on meta data of TBA_Network Class
-matchKey = edgeKeys[5]
+matchKey = edgeKeys[7]
 matchData = edgeData[matchKey]
 
 matchTeams = dict()
@@ -56,5 +71,3 @@ matchScores = dict()
 matchScores['red'] = matchData['alliances']['red']['score']
 matchScores['blue'] = matchData['alliances']['blue']['score']
 print('Match Scores:', matchScores)
-
-
