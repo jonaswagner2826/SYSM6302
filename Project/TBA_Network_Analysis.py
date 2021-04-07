@@ -8,19 +8,98 @@ Created on Mon Mar 29 07:57:38 2021
 """
 
 # Nessicary Packages
-import numpy as np
 import networkx as nx
 import itertools
 import TBA_database_access as tba
 
-# tbaNetwork class
+# TBA_Network class ------------------------------------------------------
 class TBA_Network:
+    """
+    TBA_NETWORK is a class for creating and analyzing networks made up from
+    FIRST Robotics Competition match data from The Blue Alliance.
+    
+    Atributes
+    ---------
+    year : str
+        year of frc season.
+    event : list of str
+        list of event_keys for all events in network.
+    nodeType : str
+        node type (only programmed for teams as nodes).
+    edgeType : str
+        edge type (only programmed for matches as nodes).
+    nodeMeta : list of str
+        list of meta elements to be stored as node attibutes.
+    edgeMeta : list of str
+        list of meta elements to be stored as edge attibutes.
+    nodeKeys : list of str
+        list of keys for all the nodes in the network.
+    edgeKeys : list of str
+        list of keys for all the (meta-)edges in the network.
+        (These edges are actually more like clusters... each is a match)
+    nodeData : dict of dicts
+        dictionary of all node attributes keyed by the nodeKeys.
+    edgeData : dict of dicts
+        dictionary of all edge attributes keyed by the nodeKeys.
+        (These edges are actually more like clusters... each is a match)
+    edgeTuples : list of tuples
+        list containing tuples related to every node within a the network.
+        (used to generate all the edges within the nx.MultiGraph)
+    G : nx.MultiGraph
+        nx.MultiGraph constructed with all the nodes and edges with the metadata
+        stored as attributes.
+    G_default : nx.Graph
+        nx.Graph that is the default weighted undirected projection representing
+        the total number of edges that connects them.
+    
+    Methods
+    -------
+    GraphProjections(self, alliancePartners = 0, weightCalc = 'default')
+        Generates undirected weighted projections of the network with weighting
+        calculated acording to specific parameters.
+    WeightCalc(self, team1, team2, weightCalc)
+        Function for detirmining the weighting between two nodes.
+    TeamKeys(self)
+        Method that returns a list of team keys
+    MatchKeys(self)
+        Method that returns a list of match keys
+    
+    ..... More need to be added for network analysis
+    
+    
+    """
+    
     def __init__(self, year = -1, event = -1,
                  nodeType = 'team', edgeType = 'match',
                  nodeMeta = ['nickname', 'name', 'state_prov', 'country'],
                  edgeMeta = ['match_key', 'event_key', 'scores', 'teams',
                              'winning_alliance', 'alliancePartners',
                              'comp_level', 'match_number']):
+        """
+        TBA_NETWORK constructor function. Creates a TBA_Network object
+        constructed with TBA data acorrding to specific inputs
+        
+        Parameters
+        ----------
+        year : int or str, optional
+            year specifier. The default is -1.
+        event : str, optional
+            event_key for a specific event. The default is -1.
+        nodeType : str, optional
+            type of parameter to be a node.
+            The default is 'team'. (only default coded)
+        edgeType : str, optional
+            type of parameter to ba an edge.
+            The default is 'match'. (only default coded)
+        nodeMeta : str, optional
+            meta data to be included as node atributes.
+            The default is ['nickname', 'name', 'state_prov', 'country'].
+        edgeMeta : str, optional
+            meta data to be included as edge atrributes.
+            The default is ['match_key', 'event_key', 'scores', 'teams',
+                                'winning_alliance', 'alliancePartners',
+                                'comp_level', 'match_number'].
+        """
         # Explicet Parameters
         self.year = year
         self.event = event
@@ -68,8 +147,7 @@ class TBA_Network:
         nx.set_node_attributes(self.G, self.nodeMetaData)
         
         # Edge Keys and Data
-        # edgeKeys = list() # Keys and data don't line up with each edge
-        edgeData = dict() # Keys and data don't line up with each edge
+        edgeData = dict()
         if edgeType == 'match' and nodeType == 'team':
             for event in self.event:
                 print('Event:', event)
@@ -78,62 +156,16 @@ class TBA_Network:
                     edgeData.update({match['key']: match})
             self.edgeData = edgeData
             self.edgeKeys = list(edgeData.keys())
-                
-        
-        
-        
-        
-        
 
-        #     # node and nodeKeys refer to individual teams
-        #     for node in self.nodeKeys:
-        #         # teamMatchData is a list of all matchs a team plays (event or year)
-        #         teamMatchData = tba.getTeamMatchData(node, year, event)
-        #         for match in teamMatchData:
-        #             # This is for every match key (ovoid repeat)
-        #             if match['key'] not in edgeKeys:
-        #                 # Save match key and data for TBA_network data
-        #                 edgeKeys.append(match['key'])
-        #                 edgeData[match['key']] = match
-        #     self.edgeKeys = edgeKeys
-        #     self.edgeData = edgeData
-        
-        
-        
-            
             # Generate Edges
             edgeTuples = list()
-            # for matchKey, matchData in [self.edgeData.keys(), self.edgeData.values()]:
             for matchKey in self.edgeKeys:
                 matchData = self.edgeData[matchKey]
-                # data = dict()
-                # for meta in edgeMeta:
-                #     if meta == 'teams':
-                #         teams = MatchTeams(matchData)
-                #     # get score data using 
-                #     elif meta == 'scores':
-                #         data['scores'] = MatchScores(matchData)
-                #     # Winning alliance sometimes doesn't show up...
-                #     elif meta == 'winning_alliance':
-                #         if matchData[meta] != '':
-                #             data[meta] = matchData[meta]
-                #         elif MatchScores(matchData)['red'] > MatchScores(matchData)['blue']:
-                #             data[meta] = 'red'
-                #         elif MatchScores(matchData)['red'] < MatchScores(matchData)['blue']:
-                #             data[meta] = 'blue'
-                #         else:
-                #             data[meta] = 'tie?' # should question...
-                #     elif meta ==  'alliancePartners':
-                #         pass # Assume this is always included in init
-                #     elif meta == 'match_key':
-                #         pass # Assume this is always included in init
-                #     else:
-                #         data[meta] = matchData[meta]
+
                 teams = MatchTeams(matchData)
                 data = {'scores' : MatchScores(matchData),
                         'comp_level' : matchData['comp_level'],
                         'match_number' : matchData['match_number'],
-                        # 'match_key' : matchData['match_key'], included as index (key) of tuples
                         'event_key' : matchData['event_key']
                         }
                 # Winning Alliance....
@@ -163,8 +195,8 @@ class TBA_Network:
         # Add edges to graph
         self.G.add_edges_from(self.edgeTuples)
         
-        # Projection Graphs # running these takes a lot of comp time
-        # self.G_default = self.GraphProjections() #Default Projection
+        # Projection Graphs
+        self.G_default = self.GraphProjections() #Default Projection
         
         
     
@@ -219,31 +251,48 @@ class TBA_Network:
 
     # Calculations for Convinence
     def WeightCalc(self, team1, team2, weightCalc):
+        """
+        WEIGHTCALC returns a weighting between two nodes dependent on calc method.
+
+        Parameters
+        ----------
+        team1 : str (node_key)
+        team2 : str (node_key)
+        weightCalc : str
+            Method to be used to calculate the weight between two nodes.
+
+        Returns
+        -------
+        float (or int)
+            The caclulated weight between nodes.
+
+        """
         if weightCalc == 'default':
             return self.G.number_of_edges(team1,team2)
         else:
             print('not coded yet')
-    
-    
-    
-    
+
     # Output parameters
     def TeamKeys(self):
+        """
+        Returns a list of the team keys
+        """
         if self.nodeType == 'team':
             return self.nodeKeys
         else:
             return -1 #not coded yet
         
     def MatchKeys(self):
+        """
+        Returns a list of the match keys
+        """
         if self.edgeType == 'match':
             return self.edgeKeys
         else:
             return -1 #not coded yet
-    
-    
-    
-    
-# Helpful functions
+
+
+## Helpful functions ---------------------------------------------------------
 def MatchTeams(matchData):
     """
     Returns a dictionary of teams in red or blue alliances given match data
@@ -253,7 +302,6 @@ def MatchTeams(matchData):
     matchTeams['blue'] = matchData['alliances']['blue']['team_keys']
     return matchTeams
 
-
 def MatchScores(matchData):
     """
     Returns a dictionary of scores for red or blue alliances given match data
@@ -262,3 +310,30 @@ def MatchScores(matchData):
     matchScores['red'] = matchData['alliances']['red']['score']
     matchScores['blue'] = matchData['alliances']['blue']['score']
     return matchScores
+
+## Old Code
+# this was for doing specific adjustments for metaData... got rid of it for 
+# simplicity...
+                # data = dict()
+                # for meta in edgeMeta:
+                #     if meta == 'teams':
+                #         teams = MatchTeams(matchData)
+                #     # get score data using 
+                #     elif meta == 'scores':
+                #         data['scores'] = MatchScores(matchData)
+                #     # Winning alliance sometimes doesn't show up...
+                #     elif meta == 'winning_alliance':
+                #         if matchData[meta] != '':
+                #             data[meta] = matchData[meta]
+                #         elif MatchScores(matchData)['red'] > MatchScores(matchData)['blue']:
+                #             data[meta] = 'red'
+                #         elif MatchScores(matchData)['red'] < MatchScores(matchData)['blue']:
+                #             data[meta] = 'blue'
+                #         else:
+                #             data[meta] = 'tie?' # should question...
+                #     elif meta ==  'alliancePartners':
+                #         pass # Assume this is always included in init
+                #     elif meta == 'match_key':
+                #         pass # Assume this is always included in init
+                #     else:
+                #         data[meta] = matchData[meta]

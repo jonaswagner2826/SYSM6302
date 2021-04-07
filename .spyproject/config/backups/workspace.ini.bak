@@ -8,5 +8,5 @@ recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\
 
 [main]
 version = 0.2.0
-recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\\TBA_Network_Analysis.py']
+recent_files = ['..\\..\\..\\.spyder-py3\\temp.py', 'Project\\test.py']
 

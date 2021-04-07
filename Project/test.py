@@ -31,6 +31,7 @@ event = '2015hop'
 """
 Notes on timing of graph build:
     - Regular event (hopper sub-division) around 20 sec w/ projection 10 w/out
+    ... After adjustments... < 1 sec!!!!
     - Full season (2015) (gave up on it...)
     ... timming probably messed up by mining... idk by how much though
     ... idk yet not done (bottleneck is probably api speed... 0.2 ish Mbps download at full)
@@ -40,8 +41,8 @@ Notes on timing of graph build:
     ... 66 sec!!!! awesome!
 """
 tic = time.time()
-tbaNetwork = TBA_Network(year = year)
-# tbaNetwork = TBA_Network(event = event)
+# tbaNetwork = TBA_Network(year = year)
+tbaNetwork = TBA_Network(event = event)
 toc = time.time()
 print('Build Time =', toc - tic)
 
