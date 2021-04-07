@@ -41,13 +41,13 @@ Notes on timing of graph build:
     ... 66 sec!!!! awesome!
 """
 tic = time.time()
-# tbaNetwork = TBA_Network(year = year)
-tbaNetwork = TBA_Network(event = event)
+tbaNetwork = TBA_Network(year = year)
+# tbaNetwork = TBA_Network(event = event)
 toc = time.time()
 print('Build Time =', toc - tic)
 
 
-filename = 'TBA_Network_' + str(tbaNetwork.year)
+filename = 'TBA_Network_' + str(tbaNetwork.year) + '.gml'
 # TBA_Network data explicit
 G = tbaNetwork.G
 nx.write_gml(G, filename)
