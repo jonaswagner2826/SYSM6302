@@ -12,7 +12,7 @@ import networkx as nx
 import itertools
 import TBA_database_access as tba
 
-# TBA_Network class ------------------------------------------------------
+## TBA_Network class ------------------------------------------------------
 class TBA_Network:
     """
     TBA_NETWORK is a class for creating and analyzing networks made up from
@@ -158,7 +158,7 @@ class TBA_Network:
             self.edgeKeys = list(edgeData.keys())
 
             # Generate Edges
-            edgeTuples = list()
+            # edgeTuples = list()
             for matchKey in self.edgeKeys:
                 matchData = self.edgeData[matchKey]
 
@@ -178,26 +178,31 @@ class TBA_Network:
                 else:
                     data['winning_alliance'] = 'tie?'
                 
-                'comp_level', 'match_number' 'match_key', 'event_key'
+                # 'comp_level', 'match_number' 'match_key', 'event_key'
                 for team1, team2 in itertools.combinations(
                         teams['red'] + teams['blue'], 2):
-                    if ((team1 in teams['red'] and team2 in teams['red']) 
-                        or (team1 in teams['blue'] and team2 in teams['blue'])):
-                        data['alliancePartners'] = True
+                    # if ((team1 in teams['red'] and team2 in teams['red']) 
+                    #     or (team1 in teams['blue'] and team2 in teams['blue'])):
+                    #     data['alliancePartners'] = True
+                    
+                    if {team1, team2} <= set(teams['red']):
+                        data['alliancePartners'] = 'red'
+                    elif {team1, team2} <= set(teams['blue']):
+                        data['alliancePartners'] = 'blue'
                     else:
-                        data['alliancePartners'] = False
-                    edgeTuples.append((team1, team2, matchKey, data))
-            self.edgeTuples = edgeTuples
+                        data['alliancePartners'] = 'opponents'
+
+                    # edgeTuples.append((team1, team2, matchKey, data))
+                    
+                    # Add edges to graph
+                    self.G.add_edges_from([(team1, team2, matchKey, data)])
+            # self.edgeTuples = edgeTuples
+            
+            # Projection Graphs
+            self.G_default = self.GraphProjections() #Default Projection
             
         else:
             print('Only match/team coded')
-        
-        # Add edges to graph
-        self.G.add_edges_from(self.edgeTuples)
-        
-        # Projection Graphs
-        self.G_default = self.GraphProjections() #Default Projection
-        
         
     
     # Projection Graphs
@@ -241,10 +246,27 @@ class TBA_Network:
             G_projection.add_weighted_edges_from(G_projection_tuples)
         # AlliancePartners Network
         elif alliancePartners == 1:
-            pass # Need to eliminate edges where they are not partners
+            G_projection_tuples = list()
+            for team1, team2 in itertools.combinations(self.G.nodes(),2):
+                if self.G.has_edge(team1, team2):
+                    weight = self.WeightCalc(
+                            team1, team2, weightCalc + '_partners')
+                    if weight >= 1:
+                        G_projection_tuples.append(
+                        (team1, team2, weight))
+            G_projection.add_weighted_edges_from(G_projection_tuples)
+            # Need to eliminate edges where they are not partners
         # Opponents Network
         elif alliancePartners == -1:
-            pass #need to eliminate all edges where teams are partners
+            G_projection_tuples = list()
+            for team1, team2 in itertools.combinations(self.G.nodes(),2):
+                if self.G.has_edge(team1, team2):
+                    weight = self.WeightCalc(
+                            team1, team2, weightCalc + '_opponents')
+                    if weight >= 1:
+                        G_projection_tuples.append(
+                        (team1, team2, weight))
+            G_projection.add_weighted_edges_from(G_projection_tuples)
        
         return G_projection
     
@@ -269,6 +291,18 @@ class TBA_Network:
         """
         if weightCalc == 'default':
             return self.G.number_of_edges(team1,team2)
+        elif weightCalc == 'default_partners':
+            weight = 0
+            for match in self.G[team1][team2]:
+                if self.G[team1][team2][match]['alliancePartners'] in {'red','blue'}:
+                    weight += 1
+            return weight
+        elif weightCalc == 'default_opponents':
+            weight = 0
+            for match in self.G[team1][team2]:
+                if self.G[team1][team2][match]['alliancePartners'] == 'opponents':
+                    weight += 1
+            return weight
         else:
             print('not coded yet')
 
@@ -290,6 +324,65 @@ class TBA_Network:
             return self.edgeKeys
         else:
             return -1 #not coded yet
+    
+    
+    # Centrality Metrics
+    def DegreeSequence(self, projection = 'none'):
+        """
+        DEGREESEQUENCE returns a sorted list with team keys and degreese
+
+        Parameters
+        ----------
+        projection : str, optional
+            Network Projection to use. The default is 'none', meaning all edges
+
+        Returns
+        -------
+        DegreeSequence : list of tuples
+            Sequence of degrees with tuples of team names and degrees
+
+        """
+        if projection != 'none':
+            if projection == 'match':
+                G = self.GraphProjections()
+            elif projection == 'partners':
+                G = self.GraphProjections(alliancePartners=1)
+            elif projection == 'opponents':
+                G = self.GraphProjections(alliancePartners=-1)
+            else:
+                print('not coded')
+        else:
+            G = self.G
+        
+        
+        return sorted([(n,d) for n, d in G.degree()],
+                      reverse=True, # Highest degree at top
+                      key = lambda x: x[1], # Sort based on degree
+                      )
+    
+    
+    def DegreeDist(self, projection = 'none'):
+        """
+        DEGREEDIST returns a list of the degree distribution
+
+        Parameters
+        ----------
+        projection : TYPE, optional
+            What network projection to use.
+            The default is 'none' (meaning all edges).
+
+        Returns
+        -------
+        DegreeDist : list of int
+            List of the degrees of each node
+
+        """
+        degSeq = self.DegreeSequence(projection)
+        return sorted([d for n, d in degSeq], reverse=True)
+        
+    
+    
+    
 
 
 ## Helpful functions ---------------------------------------------------------
@@ -310,6 +403,18 @@ def MatchScores(matchData):
     matchScores['red'] = matchData['alliances']['red']['score']
     matchScores['blue'] = matchData['alliances']['blue']['score']
     return matchScores
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Old Code
 # this was for doing specific adjustments for metaData... got rid of it for 
