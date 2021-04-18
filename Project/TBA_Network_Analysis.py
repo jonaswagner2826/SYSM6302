@@ -27,7 +27,7 @@ class TBA_Network:
     nodeType : str
         node type (only programmed for teams as nodes).
     edgeType : str
-        edge type (only programmed for matches as nodes).
+        edge type (only programmed for matches as edges).
     nodeMeta : list of str
         list of meta elements to be stored as node attibutes.
     edgeMeta : list of str
