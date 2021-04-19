@@ -11,6 +11,9 @@ Created on Mon Mar 29 07:57:38 2021
 import networkx as nx
 import itertools
 import TBA_database_access as tba
+import numpy as np
+import os.path
+from os import path
 
 ## TBA_Network class ------------------------------------------------------
 class TBA_Network:
@@ -74,7 +77,9 @@ class TBA_Network:
                  nodeMeta = ['nickname', 'name', 'state_prov', 'country'],
                  edgeMeta = ['match_key', 'event_key', 'scores', 'teams',
                              'winning_alliance', 'alliancePartners',
-                             'comp_level', 'match_number']):
+                             'comp_level', 'match_number'],
+                 filename_base = 'TBA_Network_',
+                 ):
         """
         TBA_NETWORK constructor function. Creates a TBA_Network object
         constructed with TBA data acorrding to specific inputs
@@ -99,6 +104,9 @@ class TBA_Network:
             The default is ['match_key', 'event_key', 'scores', 'teams',
                                 'winning_alliance', 'alliancePartners',
                                 'comp_level', 'match_number'].
+        filename_base: str, optional
+            The base filename with subfolders and underscore included.
+            The default is 'TBA_Network_'
         """
         # Explicet Parameters
         self.year = year
@@ -107,6 +115,8 @@ class TBA_Network:
         self.edgeType = edgeType
         self.nodeMeta = nodeMeta
         self.edgeMeta = edgeMeta
+        self.filename = filename_base
+                
         
         # Node Keys and Data
         if nodeType == 'team':
@@ -115,10 +125,12 @@ class TBA_Network:
                 print('Event Superseding year')
                 self.event = [event]
                 self.year = event[0:4]
+                self.filename += str(self.event)
             elif year != -1:
                 self.nodeData = tba.getTeamsInfo(year)
                 print('All events of ', year,' included')
                 self.event = tba.getEventKeys(self.year)
+                self.filename += str(self.year)
         else:
             print('Node type not coded yet')
         
@@ -147,8 +159,13 @@ class TBA_Network:
         nx.set_node_attributes(self.G, self.nodeMetaData)
         
         # Edge Keys and Data
-        edgeData = dict()
-        if edgeType == 'match' and nodeType == 'team':
+        if path.exists(self.filename): 
+            print('done again')
+        
+        
+        
+        elif edgeType == 'match' and nodeType == 'team':
+            edgeData = dict()
             for event in self.event:
                 print('Event:', event)
                 eventMatchData = tba.getEventMatchData(event)
@@ -218,6 +235,7 @@ class TBA_Network:
         weightCalc: str, optional
             Calculation settings:
                 ('default')     - Total Matches (Default)
+                ('exists')      - Weight = 1
                 ('MarginSum')   - Win Margin Sum 
                 ('MarginSub')   - Win Margin Subtractive (if opponents subtract)
                 ('MarginSubAvg')- Win Margin Subtractive Average (if opponents subtract)
@@ -233,46 +251,40 @@ class TBA_Network:
 
         """
         
-        #Create Matches
+        # Don't recreate if exists
+        attrName = 'G_' + weightCalc + str(alliancePartners)
+        if hasattr(self, attrName):
+            return getattr(self, attrName)
+        
+        # if alliancePartners != 0:
+        #     if alliancePartners < 0:
+        #         weightCalc += '_opponents'
+        #     elif alliancePartners > 0:
+        #         weightCalc += '_partners'
+        
+        # Initialize Graph object
         G_projection = nx.Graph(alliancePartners = alliancePartners,
                                 weightCalc = weightCalc)
-        # All Matchs
-        if alliancePartners == 0:
-            G_projection_tuples = list()
-            for team1, team2 in itertools.combinations(self.G.nodes(),2):
-                if self.G.has_edge(team1, team2):    
-                    G_projection_tuples.append(
-                        (team1, team2, self.WeightCalc(team1, team2, weightCalc)))
-            G_projection.add_weighted_edges_from(G_projection_tuples)
-        # AlliancePartners Network
-        elif alliancePartners == 1:
-            G_projection_tuples = list()
-            for team1, team2 in itertools.combinations(self.G.nodes(),2):
-                if self.G.has_edge(team1, team2):
-                    weight = self.WeightCalc(
-                            team1, team2, weightCalc + '_partners')
-                    if weight >= 1:
-                        G_projection_tuples.append(
-                        (team1, team2, weight))
-            G_projection.add_weighted_edges_from(G_projection_tuples)
-            # Need to eliminate edges where they are not partners
-        # Opponents Network
-        elif alliancePartners == -1:
-            G_projection_tuples = list()
-            for team1, team2 in itertools.combinations(self.G.nodes(),2):
-                if self.G.has_edge(team1, team2):
-                    weight = self.WeightCalc(
-                            team1, team2, weightCalc + '_opponents')
-                    if weight >= 1:
-                        G_projection_tuples.append(
-                        (team1, team2, weight))
-            G_projection.add_weighted_edges_from(G_projection_tuples)
-       
+        
+        # Edge Tuple Generation
+        G_projection_tuples = list()
+        for team1, team2 in itertools.combinations(self.G.nodes(),2):
+            if self.G.has_edge(team1, team2):
+                weight = self.WeightCalc(team1, team2,
+                                         alliancePartners, weightCalc)
+                if weight >= 1:
+                    G_projection_tuples.append((team1, team2, weight))
+                    
+        # Generate Edges
+        G_projection.add_weighted_edges_from(G_projection_tuples)
+        
+        # Save Projection Graph
+        setattr(self, attrName, G_projection)
         return G_projection
     
 
     # Calculations for Convinence
-    def WeightCalc(self, team1, team2, weightCalc):
+    def WeightCalc(self, team1, team2, alliancePartners, weightCalc):
         """
         WEIGHTCALC returns a weighting between two nodes dependent on calc method.
 
@@ -280,8 +292,19 @@ class TBA_Network:
         ----------
         team1 : str (node_key)
         team2 : str (node_key)
+        alliancePartners : int
+            Indication of if a partners restriction should be included
+            -1 = include opponents
+            0 = include all matches
+            1 = include partners
         weightCalc : str
             Method to be used to calculate the weight between two nodes.
+            default = total number of edges (matchs in common)
+            default_partners = number of matchs together as partners
+            default_opponents = number of matches together as opponents
+            exists = 1 if connection exists
+            score = alliance score if parnters, total of both if all matches
+                (error if opponents)
 
         Returns
         -------
@@ -289,22 +312,53 @@ class TBA_Network:
             The caclulated weight between nodes.
 
         """
-        if weightCalc == 'default':
-            return self.G.number_of_edges(team1,team2)
-        elif weightCalc == 'default_partners':
-            weight = 0
-            for match in self.G[team1][team2]:
-                if self.G[team1][team2][match]['alliancePartners'] in {'red','blue'}:
-                    weight += 1
-            return weight
-        elif weightCalc == 'default_opponents':
-            weight = 0
-            for match in self.G[team1][team2]:
-                if self.G[team1][team2][match]['alliancePartners'] == 'opponents':
-                    weight += 1
-            return weight
+        
+        matches = self.G[team1][team2]
+        
+        if alliancePartners != 0:
+            if alliancePartners == 1:
+                keys = [key for key in list(matches) if
+                        {matches[key]['alliancePartners']} <= {'blue','red'}]
+            elif alliancePartners == -1:
+                keys = [key for key in list(matches) if
+                        {matches[key]['alliancePartners']} <= {'opponent'}]
         else:
-            print('not coded yet')
+            keys = list(matches)
+                  
+        if len(keys) == 0: return 0
+        
+        if weightCalc == 'default':
+            return len(keys)
+        elif weightCalc == 'exists':
+            if len(keys) >= 1:
+                return 1
+            else:
+                return 0
+        elif weightCalc == 'score':
+            weight = 0
+            if alliancePartners == 0:
+                for key in keys:
+                    weight += matches[key]['scores']['red']
+                    weight += matches[key]['scores']['blue']
+            elif alliancePartners == 1:
+                for key in keys:
+                    weight += matches[key]['scores'][
+                        matches[key]['alliancePartners']]
+            else:
+                print('not coded for this')
+            
+            return weight
+        
+        else:
+            print('not coded yet')    
+
+
+    # Save and Import Network
+    def ImportGML(filename):
+        pass
+
+
+
 
     # Output parameters
     def TeamKeys(self):
@@ -335,6 +389,7 @@ class TBA_Network:
         ----------
         projection : str, optional
             Network Projection to use. The default is 'none', meaning all edges
+            
 
         Returns
         -------
@@ -342,17 +397,51 @@ class TBA_Network:
             Sequence of degrees with tuples of team names and degrees
 
         """
+
         if projection != 'none':
-            if projection == 'match':
-                G = self.GraphProjections()
-            elif projection == 'partners':
-                G = self.GraphProjections(alliancePartners=1)
-            elif projection == 'opponents':
-                G = self.GraphProjections(alliancePartners=-1)
+            alliancePartners = 0
+            weightCalc = 'default'
+            if projection in {'match','matches','default'}:
+                pass # Default values
+            elif projection in {'partners'}:
+                alliancePartners = 1
+            elif projection in {'oponents'}:
+                alliancePartners = -1
+            elif projection in {'allianceScore'}:
+                alliancePartners = 1
+                weightCalc = 'score'
             else:
-                print('not coded')
+                print('using default projection')
+            G = self.GraphProjections(alliancePartners, weightCalc)
         else:
             G = self.G
+        
+        
+        
+        
+        
+        
+        
+        
+            
+        
+        
+        
+        
+        
+        # if projection != 'none':
+        #     if projection in {'match','matches','default'}:
+        #         G = self.GraphProjections()
+        #     elif projection == 'partners':
+        #         G = self.GraphProjections(alliancePartners=1)
+        #     elif projection == 'opponents':
+        #         G = self.GraphProjections(alliancePartners=-1)
+        #     elif projection == 'exists':
+        #         G = self.GraphProjections(weightCalc='exists')
+        #     else:
+        #         print('not coded')
+        # else:
+        #     G = self.G
         
         
         return sorted([(n,d) for n, d in G.degree()],
@@ -361,7 +450,7 @@ class TBA_Network:
                       )
     
     
-    def DegreeDist(self, projection = 'none'):
+    def DegreeDist(self, projection = 'none', alliancePartners = 0):
         """
         DEGREEDIST returns a list of the degree distribution
 
@@ -370,7 +459,12 @@ class TBA_Network:
         projection : TYPE, optional
             What network projection to use.
             The default is 'none' (meaning all edges).
-
+        alliancePartners : int
+            Indication of if a partners restriction should be included
+            -1 = include opponents
+             0 = include all matches
+             1 = include partners
+             
         Returns
         -------
         DegreeDist : list of int

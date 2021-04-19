@@ -21,7 +21,7 @@ generateNewGraphs = True
 if generateNewGraphs:
 
     year_network = False
-    event_network = True 
+    event_network = True
     
     year = '2015'
     event = '2015hop'
@@ -39,17 +39,17 @@ if generateNewGraphs:
     # TBA_Network data explicit
     G = tbaNetwork.G
     nx.write_gml(G, filename)
-    nodeKeys = tbaNetwork.nodeKeys
-    nodeData = tbaNetwork.nodeData
-    edgeKeys = tbaNetwork.edgeKeys
-    edgeData = tbaNetwork.edgeData
-    G_match = tbaNetwork.GraphProjections()
+    # nodeKeys = tbaNetwork.nodeKeys
+    # nodeData = tbaNetwork.nodeData
+    # edgeKeys = tbaNetwork.edgeKeys
+    # edgeData = tbaNetwork.edgeData
+    # G_match = tbaNetwork.GraphProjections()
 
 
 
 
 
-dseq = tbaNetwork.DegreeSequence(projection = 'partners')
+dseq = tbaNetwork.DegreeSequence(projection = 'allianceScore')#projection = 'partners')
 print(dseq)
 
 
