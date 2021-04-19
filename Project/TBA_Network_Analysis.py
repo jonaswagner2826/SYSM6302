@@ -403,6 +403,60 @@ class TBA_Network:
     
     
     # Centrality Metrics
+    def Centrality(self, node = -1, projection = 'none', mode = 'degree',
+                   print_top_nodes = -1):
+        
+        if projection != 'none':
+            alliancePartners = 0
+            weightCalc = 'default'
+            if projection in {'match','matches','default'}:
+                pass # Default values
+            elif projection in {'partners'}:
+                alliancePartners = 1
+            elif projection in {'oponents'}:
+                alliancePartners = -1
+            elif projection in {'allianceScore'}:
+                alliancePartners = 1
+                weightCalc = 'score'
+            else:
+                print('using default projection')
+            G = self.GraphProjections(alliancePartners, weightCalc)
+        else:
+            G = self.G
+        
+        
+        if mode == 'degree':
+            centrality_vector = nx.degree_centrality(G)
+        elif mode == 'eigenvector':
+            centrality_vector = nx.eigenvector_centrality(G)
+        elif mode == 'katz':
+            centrality_vector = nx.katz_centrality_numpy(G)
+        else:
+            print('mode not coded yet')
+        
+        if print_top_nodes > 0:
+            cent_list = sorted([(n,d) for n, d in centrality_vector.items()],
+                              reverse=True, # Highest degree at top
+                              key = lambda x: x[1], # Sort based on degree
+                              )
+            
+            print(str(mode) + ' centrality')
+            for i in range(min(int(print_top_nodes),len(cent_list))):
+                n, score = cent_list[i]
+                print('  %i. %s (%1.4f)' % (i+1,n,score))
+                #print '  %i. %s' % (i+1,G.node_object(idx))
+        
+        
+        if node == -1:
+            return centrality_vector
+        else:
+            return centrality_vector[node]
+        
+        return 
+    
+    
+    
+    # Network Structure Dists
     def DegreeSequence(self, projection = 'none'):
         """
         DEGREESEQUENCE returns a sorted list with team keys and degreese
@@ -429,7 +483,7 @@ class TBA_Network:
                 alliancePartners = 1
             elif projection in {'oponents'}:
                 alliancePartners = -1
-            elif projection in {'allianceScore'}:
+            elif projection in {'score','allianceScore'}:
                 alliancePartners = 1
                 weightCalc = 'score'
             else:
@@ -442,6 +496,7 @@ class TBA_Network:
                       reverse=True, # Highest degree at top
                       key = lambda x: x[1], # Sort based on degree
                       )
+    
     
     
     def DegreeDist(self, projection = 'none'):

@@ -38,6 +38,11 @@ if generateNewGraphs:
 # ddist = tbaNetwork.DegreeDist('matches')
 
 tbaNetwork.PlotDDist(projection = 'partners')
+dseq_score = tbaNetwork.DegreeSequence(projection='allianceScore')
+centrality_score = tbaNetwork.Centrality(projection = 'allianceScore',
+                                         print_top_nodes =20,
+                                         mode = 'eigenvector')
+centrality_test = tbaNetwork.Centrality('frc2826', projection = 'allianceScore')
 
 
 
