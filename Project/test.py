@@ -15,15 +15,15 @@ import TBA_Network_Analysis as tba_na
 import time
 
 
-generateNewGraphs = False
+generateNewGraphs = True
 
 
 if generateNewGraphs:
 
-    year_network = True
-    event_network = False
+    year_network = False
+    event_network = True
     
-    year = '2016'
+    year = '2015'
     event = '2015hop'
     
     ## Build Network
@@ -34,10 +34,10 @@ if generateNewGraphs:
     print('Build Time =', toc - tic)
 
 
-dseq = tbaNetwork.DegreeSequence(projection = 'matches')#projection = 'partners')
-ddist = tbaNetwork.DegreeDist('matches')
+# dseq = tbaNetwork.DegreeSequence(projection = 'matches')#projection = 'partners')
+# ddist = tbaNetwork.DegreeDist('matches')
 
-tbaNetwork.PlotDDist(projection = 'matches')
+tbaNetwork.PlotDDist(projection = 'partners')
 
 
 

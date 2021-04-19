@@ -124,15 +124,16 @@ class TBA_Network:
                  print('Event Superseding year')
                  self.event = [event]
                  self.year = event[0:4]
-                 self.filename += str(self.event)
+                 self.filename += str(event)
              elif year != -1:
-                 self.filename += str(self.year)
+                 self.filename += str(year)
         else:
              print('Node type not coded yet')
         # If network exists it is read in here
         if path.exists(self.filename + '.gml'): 
             # (if error happens generate from scratch)
-            print('Reading network from file: ' + self.filename + '.gml')
+            print('Reading network from file: ' + self.filename + '.gml'
+                  + '\n' + '(may take up to 1 min to load)')
             self.G = nx.read_gml(self.filename + '.gml')
             
         # Generate new network 
@@ -262,13 +263,15 @@ class TBA_Network:
 
         """
         
-        # Don't recreate if exists
+        # Projection Name
         attrName = 'G_' + weightCalc + str(alliancePartners)
         if alliancePartners != 0:
             if alliancePartners == 1:
                 attrName += '_partners'
             elif alliancePartners == -1:
                 attrName += '_opponents'
+                
+        # Test and load if exists
         if hasattr(self, attrName):
             return getattr(self, attrName)
         elif path.exists(self.filename + attrName[2:] + '.gml'):
@@ -279,6 +282,7 @@ class TBA_Network:
             setattr(self, attrName,
                     nx.read_gml(self.filename + attrName[2:] + '.gml'))
             return getattr(self, attrName)
+        # Generate projection if it doesn't exist
         else:
             # Initialize Graph object
             G_projection = nx.Graph(alliancePartners = alliancePartners,
@@ -469,30 +473,41 @@ class TBA_Network:
     
     # Ploting and Analysis Functions
     def PlotDDist(self, projection = 'none'):
-        
+        dseq = self.DegreeSequence(projection)
+        dseq = sorted([d for n, d in dseq], reverse=True)
         ddist = self.DegreeDist(projection)
        
         cdist = [ddist[k:].sum()  for k in range(len(ddist))] 
         
-        
+        kmin = int(0.9 * min(dseq)) # not all the way to zero
+        kmax = int(max(dseq))
         
         # Assign Values for Ploting
-        xvalues = range(len(ddist));
-        barheights = ddist # Degree Dist
-        yvalues = cdist; # Cumulative Dist
+        xvalues = range(kmin,kmax);
+        barheights = ddist[kmin:kmax] # Degree Dist
+        yvalues = cdist[kmin:kmax]; # Cumulative Dist
         
         fig, axes = plt.subplots(2,1,sharex=True)
         
+        # Plot 
         axes[0].bar(xvalues,barheights, width=0.8, bottom=0, color='b')
-        plt.autoscale('True')
+        # plt.autoscale('True')
         
         # Plot cdist
-    #     plt.subplot(212)
         axes[1].loglog(xvalues,yvalues)
         plt.grid(True)
         
-        # axes[0].set_title([titleAdd,'kmin = ', str(kmin),alphaValue])
+        # Title and labels
+        axes[1].set_xlabel('Degree')
         
+        axes[0].set_title('Network: '
+                          + self.filename[17:] + '\n'
+                          + ' Projection: '
+                          + projection)
+        
+        # Save Fig
+        plt.savefig('fig/' + 'DegreeDist_' 
+                    + self.filename[17:] + '_' + str(projection))
         
         
     
@@ -519,41 +534,3 @@ def MatchScores(matchData):
     matchScores['blue'] = matchData['alliances']['blue']['score']
     return matchScores
 
-
-
-
-
-
-
-
-
-
-
-
-
-## Old Code
-# this was for doing specific adjustments for metaData... got rid of it for 
-# simplicity...
-                # data = dict()
-                # for meta in edgeMeta:
-                #     if meta == 'teams':
-                #         teams = MatchTeams(matchData)
-                #     # get score data using 
-                #     elif meta == 'scores':
-                #         data['scores'] = MatchScores(matchData)
-                #     # Winning alliance sometimes doesn't show up...
-                #     elif meta == 'winning_alliance':
-                #         if matchData[meta] != '':
-                #             data[meta] = matchData[meta]
-                #         elif MatchScores(matchData)['red'] > MatchScores(matchData)['blue']:
-                #             data[meta] = 'red'
-                #         elif MatchScores(matchData)['red'] < MatchScores(matchData)['blue']:
-                #             data[meta] = 'blue'
-                #         else:
-                #             data[meta] = 'tie?' # should question...
-                #     elif meta ==  'alliancePartners':
-                #         pass # Assume this is always included in init
-                #     elif meta == 'match_key':
-                #         pass # Assume this is always included in init
-                #     else:
-                #         data[meta] = matchData[meta]
