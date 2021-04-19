@@ -14,6 +14,7 @@ import TBA_database_access as tba
 import numpy as np
 import os.path
 from os import path
+import matplotlib.pyplot as plt
 
 ## TBA_Network class ------------------------------------------------------
 class TBA_Network:
@@ -78,7 +79,7 @@ class TBA_Network:
                  edgeMeta = ['match_key', 'event_key', 'scores', 'teams',
                              'winning_alliance', 'alliancePartners',
                              'comp_level', 'match_number'],
-                 filename_base = 'TBA_Network_',
+                 filename_base = 'Data/TBA_Network_',
                  ):
         """
         TBA_NETWORK constructor function. Creates a TBA_Network object
@@ -117,109 +118,119 @@ class TBA_Network:
         self.edgeMeta = edgeMeta
         self.filename = filename_base
                 
-        
         # Node Keys and Data
         if nodeType == 'team':
+             if event != -1:
+                 print('Event Superseding year')
+                 self.event = [event]
+                 self.year = event[0:4]
+                 self.filename += str(self.event)
+             elif year != -1:
+                 self.filename += str(self.year)
+        else:
+             print('Node type not coded yet')
+        # If network exists it is read in here
+        if path.exists(self.filename + '.gml'): 
+            # (if error happens generate from scratch)
+            print('Reading network from file: ' + self.filename + '.gml')
+            self.G = nx.read_gml(self.filename + '.gml')
+            
+        # Generate new network 
+        else:
+            print('Generating new graph: ' + self.filename)
+            # Node Keys and Data
+            print('Collecting Node Data')
             if event != -1:
                 self.nodeData = tba.getEventTeamsInfo(event)
-                print('Event Superseding year')
-                self.event = [event]
-                self.year = event[0:4]
-                self.filename += str(self.event)
             elif year != -1:
                 self.nodeData = tba.getTeamsInfo(year)
-                print('All events of ', year,' included')
                 self.event = tba.getEventKeys(self.year)
-                self.filename += str(self.year)
-        else:
-            print('Node type not coded yet')
-        
-        # nodeKeys assignment
-        self.nodeKeys = list(self.nodeData.keys())
-        
-        # MultGraph definition
-        self.G = nx.MultiGraph(year = self.year,
-                               event = self.event,
-                               nodeType = self.nodeType,
-                               edgeType = self.edgeType,
-                               nodeMeta = self.nodeMeta,
-                               edgeMeta = self.edgeMeta)
-        
-        
-        # Generate Nodes from team keys
-        self.G.add_nodes_from(self.nodeKeys)
-        # Generate meta Data
-        self.nodeMetaData = dict()
-        for key in self.nodeKeys:
-            data = dict()
-            for meta in self.nodeMeta:
-                data[meta] = self.nodeData[key][meta]
-            self.nodeMetaData[key] = data
-        # Assign node attributes
-        nx.set_node_attributes(self.G, self.nodeMetaData)
-        
-        # Edge Keys and Data
-        if path.exists(self.filename): 
-            print('done again')
-        
-        
-        
-        elif edgeType == 'match' and nodeType == 'team':
-            edgeData = dict()
-            for event in self.event:
-                print('Event:', event)
-                eventMatchData = tba.getEventMatchData(event)
-                for match in eventMatchData:
-                    edgeData.update({match['key']: match})
-            self.edgeData = edgeData
-            self.edgeKeys = list(edgeData.keys())
 
-            # Generate Edges
-            # edgeTuples = list()
-            for matchKey in self.edgeKeys:
-                matchData = self.edgeData[matchKey]
-
-                teams = MatchTeams(matchData)
-                data = {'scores' : MatchScores(matchData),
-                        'comp_level' : matchData['comp_level'],
-                        'match_number' : matchData['match_number'],
-                        'event_key' : matchData['event_key']
-                        }
-                # Winning Alliance....
-                if matchData['winning_alliance'] != '':
-                    data['winning_alliance'] = matchData['winning_alliance']
-                elif MatchScores(matchData)['red'] > MatchScores(matchData)['blue']:
-                    data['winning_alliance'] = 'red'
-                elif MatchScores(matchData)['red'] < MatchScores(matchData)['blue']:
-                    data['winning_alliance'] = 'blue'
-                else:
-                    data['winning_alliance'] = 'tie?'
-                
-                # 'comp_level', 'match_number' 'match_key', 'event_key'
-                for team1, team2 in itertools.combinations(
-                        teams['red'] + teams['blue'], 2):
-                    # if ((team1 in teams['red'] and team2 in teams['red']) 
-                    #     or (team1 in teams['blue'] and team2 in teams['blue'])):
-                    #     data['alliancePartners'] = True
-                    
-                    if {team1, team2} <= set(teams['red']):
-                        data['alliancePartners'] = 'red'
-                    elif {team1, team2} <= set(teams['blue']):
-                        data['alliancePartners'] = 'blue'
+            # nodeKeys assignment
+            self.nodeKeys = list(self.nodeData.keys())
+            
+            # MultGraph definition
+            print('Defining Multgraph')
+            self.G = nx.MultiGraph(year = self.year,
+                                   event = self.event,
+                                   nodeType = self.nodeType,
+                                   edgeType = self.edgeType,
+                                   nodeMeta = self.nodeMeta,
+                                   edgeMeta = self.edgeMeta)
+            
+            
+            # Generate Nodes from team keys
+            self.G.add_nodes_from(self.nodeKeys)
+            # Generate meta Data
+            self.nodeMetaData = dict()
+            for key in self.nodeKeys:
+                data = dict()
+                for meta in self.nodeMeta:
+                    data[meta] = self.nodeData[key][meta]
+                self.nodeMetaData[key] = data
+            # Assign node attributes
+            nx.set_node_attributes(self.G, self.nodeMetaData)
+            
+            # Edge Keys and Graph Generation
+            print('Getting Edge info and Generating Graph')
+            if edgeType == 'match' and nodeType == 'team':
+                edgeData = dict()
+                for event in self.event:
+                    print('Event:', event)
+                    eventMatchData = tba.getEventMatchData(event)
+                    for match in eventMatchData:
+                        edgeData.update({match['key']: match})
+                self.edgeData = edgeData
+                self.edgeKeys = list(edgeData.keys())
+    
+                # Generate Edges
+                # edgeTuples = list()
+                for matchKey in self.edgeKeys:
+                    matchData = self.edgeData[matchKey]
+    
+                    teams = MatchTeams(matchData)
+                    data = {'scores' : MatchScores(matchData),
+                            'comp_level' : matchData['comp_level'],
+                            'match_number' : matchData['match_number'],
+                            'event_key' : matchData['event_key']
+                            }
+                    # Winning Alliance....
+                    if matchData['winning_alliance'] != '':
+                        data['winning_alliance'] = matchData['winning_alliance']
+                    elif MatchScores(matchData)['red'] > MatchScores(matchData)['blue']:
+                        data['winning_alliance'] = 'red'
+                    elif MatchScores(matchData)['red'] < MatchScores(matchData)['blue']:
+                        data['winning_alliance'] = 'blue'
                     else:
-                        data['alliancePartners'] = 'opponents'
-
-                    # edgeTuples.append((team1, team2, matchKey, data))
+                        data['winning_alliance'] = 'tie?'
                     
-                    # Add edges to graph
-                    self.G.add_edges_from([(team1, team2, matchKey, data)])
-            # self.edgeTuples = edgeTuples
-            
-            # Projection Graphs
-            self.G_default = self.GraphProjections() #Default Projection
-            
-        else:
-            print('Only match/team coded')
+                    # 'comp_level', 'match_number' 'match_key', 'event_key'
+                    for team1, team2 in itertools.combinations(
+                            teams['red'] + teams['blue'], 2):
+                        # if ((team1 in teams['red'] and team2 in teams['red']) 
+                        #     or (team1 in teams['blue'] and team2 in teams['blue'])):
+                        #     data['alliancePartners'] = True
+                        
+                        if {team1, team2} <= set(teams['red']):
+                            data['alliancePartners'] = 'red'
+                        elif {team1, team2} <= set(teams['blue']):
+                            data['alliancePartners'] = 'blue'
+                        else:
+                            data['alliancePartners'] = 'opponents'
+    
+                        # Add edges to graph
+                        self.G.add_edges_from([(team1, team2, matchKey, data)])
+                        
+                # Save Network to file
+                print('Writing to gml file: ' + self.filename + '.gml')
+                nx.write_gml(self.G, self.filename + '.gml')          
+            else:
+                print('Only match/team coded')
+        
+        # Projection Graphs (Generated and saved as attributes)
+        print('Generating Projections')
+        self.GraphProjections() #Default Projection
+        
         
     
     # Projection Graphs
@@ -253,34 +264,41 @@ class TBA_Network:
         
         # Don't recreate if exists
         attrName = 'G_' + weightCalc + str(alliancePartners)
+        if alliancePartners != 0:
+            if alliancePartners == 1:
+                attrName += '_partners'
+            elif alliancePartners == -1:
+                attrName += '_opponents'
         if hasattr(self, attrName):
             return getattr(self, attrName)
-        
-        # if alliancePartners != 0:
-        #     if alliancePartners < 0:
-        #         weightCalc += '_opponents'
-        #     elif alliancePartners > 0:
-        #         weightCalc += '_partners'
-        
-        # Initialize Graph object
-        G_projection = nx.Graph(alliancePartners = alliancePartners,
-                                weightCalc = weightCalc)
-        
-        # Edge Tuple Generation
-        G_projection_tuples = list()
-        for team1, team2 in itertools.combinations(self.G.nodes(),2):
-            if self.G.has_edge(team1, team2):
-                weight = self.WeightCalc(team1, team2,
-                                         alliancePartners, weightCalc)
-                if weight >= 1:
-                    G_projection_tuples.append((team1, team2, weight))
-                    
-        # Generate Edges
-        G_projection.add_weighted_edges_from(G_projection_tuples)
-        
-        # Save Projection Graph
-        setattr(self, attrName, G_projection)
-        return G_projection
+        elif path.exists(self.filename + attrName[2:] + '.gml'):
+            # If network exists it is read in here
+            #       (if error happens generate from scratch)
+            print('Reading network from file: ' 
+                  + self.filename + attrName[2:] + '.gml')
+            setattr(self, attrName,
+                    nx.read_gml(self.filename + attrName[2:] + '.gml'))
+            return getattr(self, attrName)
+        else:
+            # Initialize Graph object
+            G_projection = nx.Graph(alliancePartners = alliancePartners,
+                                    weightCalc = weightCalc)
+            
+            # Edge Tuple Generation
+            G_projection_tuples = list()
+            for team1, team2 in itertools.combinations(self.G.nodes(),2):
+                if self.G.has_edge(team1, team2):
+                    weight = self.WeightCalc(team1, team2,
+                                             alliancePartners, weightCalc)
+                    if weight >= 1:
+                        G_projection_tuples.append((team1, team2, weight))
+                        
+            # Generate Edges
+            G_projection.add_weighted_edges_from(G_projection_tuples)
+            
+            # Save Projection Graph
+            setattr(self, attrName, G_projection)
+            return G_projection
     
 
     # Calculations for Convinence
@@ -416,63 +434,66 @@ class TBA_Network:
         else:
             G = self.G
         
-        
-        
-        
-        
-        
-        
-        
-            
-        
-        
-        
-        
-        
-        # if projection != 'none':
-        #     if projection in {'match','matches','default'}:
-        #         G = self.GraphProjections()
-        #     elif projection == 'partners':
-        #         G = self.GraphProjections(alliancePartners=1)
-        #     elif projection == 'opponents':
-        #         G = self.GraphProjections(alliancePartners=-1)
-        #     elif projection == 'exists':
-        #         G = self.GraphProjections(weightCalc='exists')
-        #     else:
-        #         print('not coded')
-        # else:
-        #     G = self.G
-        
-        
         return sorted([(n,d) for n, d in G.degree()],
                       reverse=True, # Highest degree at top
                       key = lambda x: x[1], # Sort based on degree
                       )
     
     
-    def DegreeDist(self, projection = 'none', alliancePartners = 0):
+    def DegreeDist(self, projection = 'none'):
         """
         DEGREEDIST returns a list of the degree distribution
 
         Parameters
         ----------
-        projection : TYPE, optional
+        projection : str, optional
             What network projection to use.
             The default is 'none' (meaning all edges).
-        alliancePartners : int
-            Indication of if a partners restriction should be included
-            -1 = include opponents
-             0 = include all matches
-             1 = include partners
              
         Returns
         -------
         DegreeDist : list of int
-            List of the degrees of each node
+            Degree distribution of the degree of each node
 
         """
         degSeq = self.DegreeSequence(projection)
-        return sorted([d for n, d in degSeq], reverse=True)
+        degSeq = sorted([d for n, d in degSeq], reverse=True)
+        
+        ddist = np.zeros(int(max(degSeq) + 1))
+        for k in degSeq:
+            ddist[k] += 1
+
+        return ddist
+        
+    
+    
+    # Ploting and Analysis Functions
+    def PlotDDist(self, projection = 'none'):
+        
+        ddist = self.DegreeDist(projection)
+       
+        cdist = [ddist[k:].sum()  for k in range(len(ddist))] 
+        
+        
+        
+        # Assign Values for Ploting
+        xvalues = range(len(ddist));
+        barheights = ddist # Degree Dist
+        yvalues = cdist; # Cumulative Dist
+        
+        fig, axes = plt.subplots(2,1,sharex=True)
+        
+        axes[0].bar(xvalues,barheights, width=0.8, bottom=0, color='b')
+        plt.autoscale('True')
+        
+        # Plot cdist
+    #     plt.subplot(212)
+        axes[1].loglog(xvalues,yvalues)
+        plt.grid(True)
+        
+        # axes[0].set_title([titleAdd,'kmin = ', str(kmin),alphaValue])
+        
+        
         
     
     
