@@ -4,6 +4,7 @@
 \usepackage{physics}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 
 %opening
@@ -17,8 +18,14 @@ Dynamical Systems \& Stability}
 
 \maketitle
 
+
 \newpage
-\section*{Phase Plane Portraits of Linear System}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+
+\newpage
+\part{Phase Plane Portraits of Linear System}
 
 For each of the linear systems below:
 \begin{enumerate}
@@ -28,8 +35,7 @@ For each of the linear systems below:
 \end{enumerate}
 
 
-
-\section{Problem 1:}
+\section{Problem 1}
 \begin{align*}
 	\dot{x}_1 &= x_2\\
 	\dot{x}_2 &= x_1 - x_2
@@ -73,7 +79,7 @@ For each of the linear systems below:
 
 
 \newpage
-\section{Problem 2:}
+\section{Problem 2}
 \begin{align*}
 	\dot{x}_1 &= x_2\\
 	\dot{x}_2 &= -3 x_1 - 4 x_2
@@ -134,7 +140,7 @@ For each of the linear systems below:
 
 
 \newpage
-\section{Problem 3:}
+\section{Problem 3}
 \begin{align*}
 	\dot{x}_1 &= x_2\\
 	\dot{x}_2 &= -4 x_1 - 2 x_2
@@ -174,7 +180,7 @@ For each of the linear systems below:
 
 
 \newpage
-\section{Problem 4:}
+\section{Problem 4}
 \begin{align*}
 	\dot{x}_1 &= x_2\\
 	\dot{x}_2 &= - 2 x_1 + 3 x_2
@@ -237,7 +243,7 @@ For each of the linear systems below:
 
 
 \newpage
-\section{Problem 5:}
+\section{Problem 5}
 \begin{align*}
 	\dot{x}_1 &= - x_1 + x_2\\
 	\dot{x}_2 &= - 2 x_1 + x_2
@@ -283,7 +289,7 @@ For each of the linear systems below:
 
 
 
-\section{Problem 6:}
+\section{Problem 6}
 Describe how the eigenvectors provide information about the shape of the phase plane portrait.\\
 
 Eigenvectors themselves indicate the direction of each mode of the system associated with each eigenvalue. In the context of the phase plane portrait, eigenvectors can indicate important directions that relate the two state variables. This may be pointing in the direction of a particular asymptotic boundary or even a line in which the curl or divergence is equal to zero.
@@ -292,7 +298,7 @@ Eigenvectors themselves indicate the direction of each mode of the system associ
 
 
 \newpage
-\section*{Linearization of Nonlinear Systems}
+\part{Linearization of Nonlinear Systems}
 For each of the nonlinear systems below:
 \begin{enumerate}
 	\item Identify the equilibrium points.
@@ -300,7 +306,7 @@ For each of the nonlinear systems below:
 	\item Classify the behavior of the linearized system around each equilibrium point.
 \end{enumerate}
 
-\section{Problem 7:}
+\section{Problem 7}
 
 \begin{align*}
 	\dot{x}_1 &= x_1 x_2\\
@@ -331,7 +337,7 @@ these two results indicate one must be zero for equalibrium, and the other indic
 From the dynamic matrix, $A$, it is apparent that the system poles are 0 and -1 which indicates a marginally stable system, but it is also known that $x_2$ specifically is asymptotically stable.
 
 \newpage
-\section{Problem 8:}
+\section{Problem 8}
 \begin{align*}
 	\dot{x}_1 &= x_2\\
 	\dot{x}_2 &= -x_1 - 3 x_2 + x_1^2 x_2
@@ -370,7 +376,7 @@ from this it can be seen that the only equilibrium point exists at the origin, t
 The eigenvalues of the linearized system are therefore known to be stable ($\real{\lambda_{1,2}} < 0)$, therefore it can be said that around the origin, the system is asymptotically stable.
 
 \newpage
-\section{Problem 9:}
+\section{Problem 9}
 \begin{align*}
 	\dot{x}_1 &= -x_1^3 -x_2\\
 	\dot{x}_2 &= 2x_1 -x_2^3
@@ -409,7 +415,7 @@ from this it can be seen that the only equilibrium point exists at the origin, t
 The purely imaginary eigenvalues indicate that the system is marginally stable and that a marginally stable focus exists around the equilibrium point. It could also be thought of as just a fully undamped system, like a spring or LC circuit.
 
 \newpage
-\section{Problem 10:}
+\section{Problem 10}
 \begin{align*}
 	\dot{x}_1 &= -x_1 -x_2^3\\
 	\dot{x}_2 &= -x_1^3 + x_2
@@ -438,7 +444,7 @@ from this it can be seen that the only equilibrium point exists at the origin, t
 From the dynamic matrix, $A$, it is apparent that the system poles are -1 and 1 which indicates an unstable linear system. Additionally, it can be said that specifically the $x_2$ dynamics are unstable, while the $x_1$ dynamics (which are governed by the $\lambda_1 = -1$) are asymptotically stable when $x_2 = 0$.
 
 \newpage
-\section{Problem 11:}
+\section{Problem 11}
 \begin{align*}
 	\dot{x}_1 &= -x_1 (1 + x_2^2)\\
 	\dot{x}_2 &= -x_1 + x_2
@@ -467,10 +473,83 @@ from this it can be seen that the only equilibrium point exists at the origin, t
 From the dynamic matrix, $A$, it is apparent that the system poles are -1 and 1 which indicates an unstable linear system. Additionally, it can be said that specifically the $x_1$ dynamics (which are governed by the $\lambda_1 = -1$) are asymptotically stable when $x_2 = 0$.
 
 \newpage
-\section*{Stability through Lyapunov Functions}
+\part{Stability through Lyapunov Functions}
+For each of the nonlinear systems below, investigate the stability of the equilibrium point $(0,0)'$ using the Lyapunov function $V(x_1, x_2) = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2$. In each case specify whether the equilibrium point is stable, asymptotically stable, globally asymptotically stable, or unstable.
+
+\section{Problem 12}
+\begin{align*}
+	\dot{x}_1 &= -x_1 (1 + x_2^2)\\
+	\dot{x}_2 &= -x_2 - x_1^2 x_2
+\end{align*}
+
+The origin is clearly the only equilibrium point since $x_1$ must equal zero and in the second equation $x_2$ must equal zero if $x_1 = 0$. Therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+The lyapnov stability criteron can then be tested for the lyapnov candidate function  $V(x_1, x_2) = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2$:
+
+\begin{align*}
+	\dot{V} &= \dv{V}{x} \dot{x}\\
+	&= \mqty(\dv{V}{x_1} & \dv{V}{x_2}) \mqty(\dot{x}_1\\ \dot{x}_2)\\
+	&= \dv{V}{x_1} \dot{x}_1 + \dv{V}{x_2} \dot{x}_2\\
+	&= x_1 (-x_1 (1 + x_2^2)) + x_2 (-x_2 - x_1^2 x_2)\\
+	&= -x_1^2 - x_1^2 x_2^2 -x_2^2 - x_1^2 x_2^2
+\end{align*}
+
+Clearly, $\dot{V} < 0 \ \forall x_1 , x_2 \neq 0$, thus the equilibrium point is globally asymptotically stable.
 
 
+\newpage
+\section{Problem 13}
+\begin{align*}
+	\dot{x}_1 &= x_1x_2^2 - x_1^3\\
+	\dot{x}_2 &= -x_1^2 x_2 - x_2^3
+\end{align*}
+The origin is clearly the only equilibrium point since $x_1$ must equal zero and in the second equation $x_2$ must equal zero if $x_1 = 0$. Therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
 
+The lyapnov stability criteron can then be tested for the lyapnov candidate function  $V(x_1, x_2) = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2$:
+
+\begin{align*}
+	\dot{V} &= \dv{V}{x} \dot{x}\\
+	&= \mqty(\dv{V}{x_1} & \dv{V}{x_2}) \mqty(\dot{x}_1\\ \dot{x}_2)\\
+	&= \dv{V}{x_1} \dot{x}_1 + \dv{V}{x_2} \dot{x}_2\\
+	&= x_1 (x_1x_2^2 - x_1^3) + x_2 (-x_1^2 x_2 - x_2^3)\\
+	&= x_1^2 x_2^2 - x_1^4 - x_1^2 x_2^2 - x_2^4\\
+	&= -x_1^4 - x_2^4
+\end{align*}
+
+Clearly, $\dot{V} < 0 \ \forall x_1 , x_2 \neq 0$, thus the equilibrium point is globally asymptotically stable.
+
+
+\section{Problem 13}
+\begin{align*}
+	\dot{x}_1 &= x_1^2 x_2 + 2 x_1 x_2^2 + x_1^3\\
+	\dot{x}_2 &= -x_1^3 + x_2^3
+\end{align*}
+The origin is clearly the only equilibrium point since $x_1$ must equal zero and in the second equation $x_2$ must equal zero if $x_1 = 0$. Therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+The lyapnov stability criteron can then be tested for the lyapnov candidate function  $V(x_1, x_2) = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2$:
+
+\begin{align*}
+	\dot{V} &= \dv{V}{x} \dot{x}\\
+	&= \mqty(\dv{V}{x_1} & \dv{V}{x_2}) \mqty(\dot{x}_1\\ \dot{x}_2)\\
+	&= \dv{V}{x_1} \dot{x}_1 + \dv{V}{x_2} \dot{x}_2\\
+	&= x_1 ( x_1^2 x_2 + 2 x_1 x_2^2 + x_1^3) + x_2 (-x_1^3 + x_2^3)\\
+	&= x_1^3 x_2 + 2 x_1^2 x_2^2 + x_1^4 - x_1^3 x_2 + x_2^4
+\end{align*}
+
+Looking at the result it is clear that although some of the terms are not explicitly postive definite, the terms $x_1^4$ and $x_2^4$ are clearly always positive definite, i.e.
+\begin{displaymath}
+	\dot{V} \geq x_1^4 + x_2^4 \geq 0, \ \forall x_1, x_2
+\end{displaymath}
+therefore the equilibrium point is unstable.
 
 
 
