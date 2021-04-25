@@ -302,11 +302,172 @@ For each of the nonlinear systems below:
 
 \section{Problem 7:}
 
+\begin{align*}
+	\dot{x}_1 &= x_1 x_2\\
+	\dot{x}_2 &= -x_1^2 -x_2
+\end{align*}
+
+\subsection{Part a}
+\begin{align*}
+	\dot{x}_1 = 0 &= x_1 x_2\\
+	\dot{x}_2 = 0 &= -x_1^2 -x_2\\
+	x_1^2 &= -x_2
+\end{align*}
+these two results indicate one must be zero for equalibrium, and the other indicates that if one is zero both are zero, therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+\subsection{Part b}
+
+\begin{align*}
+	A = \eval{\dv{f}{x}}_{x^*} &= \eval{\dv{x} \mqty(x_1 x_2\\ -x_1^2 -x_2)}_{x_1=x_2=0}\\
+	&= \eval{\mqty[x_2 & x_1\\ -2 x_1 & -1]}_{x_1=x_2=0}\\
+	&= \mqty[0&0\\0 &-1]
+\end{align*}
 
 
+\subsection{Part c}
+From the dynamic matrix, $A$, it is apparent that the system poles are 0 and -1 which indicates a marginally stable system, but it is also known that $x_2$ specifically is asymptotically stable.
 
+\newpage
+\section{Problem 8:}
+\begin{align*}
+	\dot{x}_1 &= x_2\\
+	\dot{x}_2 &= -x_1 - 3 x_2 + x_1^2 x_2
+\end{align*}
 
+\subsection{Part a}
+\begin{align*}
+	\dot{x}_1 = 0 &= x_2\\
+	\dot{x}_2 = 0 &= -x_1 - 3 x_2 + x_1^2 x_2\\
+	&= -x_2 -3(0) +x_1^2(0)
+\end{align*}
+from this it can be seen that the only equilibrium point exists at the origin, therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
 
+\subsection{Part b}
+\begin{align*}
+	A = \eval{\dv{f}{x}}_{x^*} &= \eval{\dv{x} \mqty(x_2\\ -x_1 - 3 x_2 + x_1^2 x_2)}_{x_1=x_2=0}\\
+	&= \eval{\mqty[0 & 1\\ -1 + 2 x_1 x_2 & -3 + x_1^2]}_{x_1=x_2=0}\\
+	&= \mqty[0&1\\ -1 & -3]
+\end{align*}
+
+\subsection{Part c}
+\begin{align*}
+	(sI - A)
+	&= \mqty[s & -1\\ 1 & s+3]\\
+	\det(sI-A)
+	&= s (s+3) - (-1)(1)\\
+	&= s^2 + 3 s + 1\\
+	\lambda_{1,2}
+	&= \cfrac{-3 \pm \sqrt{3^2 - 4(1)(1)}}{2(1)}\\
+	&= -\frac{3}{2} \pm \frac{\sqrt{5}}{2}
+\end{align*}
+
+The eigenvalues of the linearized system are therefore known to be stable ($\real{\lambda_{1,2}} < 0)$, therefore it can be said that around the origin, the system is asymptotically stable.
+
+\newpage
+\section{Problem 9:}
+\begin{align*}
+	\dot{x}_1 &= -x_1^3 -x_2\\
+	\dot{x}_2 &= 2x_1 -x_2^3
+\end{align*}
+
+\subsection{Part a}
+\begin{align*}
+	\dot{x}_1 = 0 &= -x_1^3 -x_2\\
+	x_1^3 &= -x_2\\
+	\dot{x}_2 = 0 &= 2x_1 -x_2^3\\
+	2 x_1 &= x_2^3
+\end{align*}
+from this it can be seen that the only equilibrium point exists at the origin, therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+\subsection{Part b}
+\begin{align*}
+	A = \eval{\dv{f}{x}}_{x^*} &= \eval{\dv{x} \mqty(-x_1^3 -x_2\\ 2x_1 -x_2^3)}_{x_1=x_2=0}\\
+	&= \eval{\mqty[-3x_1^2 & -1\\ 2& -3x_2^2]}_{x_1=x_2=0}\\
+	&= \mqty[0&-1\\ 2 & 0]
+\end{align*}
+
+\subsection{Part c}
+\begin{align*}
+	(sI - A)
+	&= \mqty[s & 1\\ -2 & s]\\
+	\det(sI-A)
+	&= (s)(s) - (1)(-2)\\
+	&= s^2 + 2\\
+	\lambda_{1,2}
+	&= \pm j \sqrt{2}
+\end{align*}
+
+The purely imaginary eigenvalues indicate that the system is marginally stable and that a marginally stable focus exists around the equilibrium point. It could also be thought of as just a fully undamped system, like a spring or LC circuit.
+
+\newpage
+\section{Problem 10:}
+\begin{align*}
+	\dot{x}_1 &= -x_1 -x_2^3\\
+	\dot{x}_2 &= -x_1^3 + x_2
+\end{align*}
+
+\subsection{Part a}
+\begin{align*}
+	\dot{x}_1 = 0 &= -x_1 -x_2^3\\
+	x_1 &= -x_2^3\\
+	\dot{x}_2 = 0 &= -x_1^3 + x_2\\
+	x_1^3 &= x_2
+\end{align*}
+from this it can be seen that the only equilibrium point exists at the origin, therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+\subsection{Part b}
+\begin{align*}
+	A = \eval{\dv{f}{x}}_{x^*} &= \eval{\dv{x} \mqty(-x_1 -x_2^3\\ -x_1^3 + x_2)}_{x_1=x_2=0}\\
+	&= \eval{\mqty[-1 & -3 x_2^2\\ -3x_1^2& 1]}_{x_1=x_2=0}\\
+	&= \mqty[-1&0\\0&1]
+\end{align*}
+
+\subsection{Part c}
+From the dynamic matrix, $A$, it is apparent that the system poles are -1 and 1 which indicates an unstable linear system. Additionally, it can be said that specifically the $x_2$ dynamics are unstable, while the $x_1$ dynamics (which are governed by the $\lambda_1 = -1$) are asymptotically stable when $x_2 = 0$.
+
+\newpage
+\section{Problem 11:}
+\begin{align*}
+	\dot{x}_1 &= -x_1 (1 + x_2^2)\\
+	\dot{x}_2 &= -x_1 + x_2
+\end{align*}
+
+\subsection{Part a}
+\begin{align*}
+	\dot{x}_1 = 0 &= -x_1 (1 + x_2^2)\\
+	x_1 &= 0\\
+	\dot{x}_2 &= -x_1 + x_2\\
+	x_1 &= x_2
+\end{align*}
+from this it can be seen that the only equilibrium point exists at the origin, therefore:
+\begin{displaymath}
+	x_1^* = x_2^* = 0
+\end{displaymath}
+
+\subsection{Part b}
+\begin{align*}
+	A = \eval{\dv{f}{x}}_{x^*} &= \eval{\dv{x} \mqty(-x_1 (1 + x_2^2)\\ -x_1 + x_2)}_{x_1=x_2=0}\\
+	&= \eval{\mqty[-1 + x_2^2 & -2 x_1 x_2\\ -1 & 1]}_{x_1=x_2=0}\\
+	&= \mqty[-1 & 0\\ -1 &1]
+\end{align*}
+
+\subsection{Part c}
+From the dynamic matrix, $A$, it is apparent that the system poles are -1 and 1 which indicates an unstable linear system. Additionally, it can be said that specifically the $x_1$ dynamics (which are governed by the $\lambda_1 = -1$) are asymptotically stable when $x_2 = 0$.
+
+\newpage
+\section*{Stability through Lyapunov Functions}
 
 
 
