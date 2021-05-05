@@ -24,7 +24,7 @@ if generateNewGraphs:
     event_network = True
     
     year = '2015'
-    event = '2015hop'
+    event = '2015cmp'
     
     ## Build Network
     tic = time.time()
@@ -39,9 +39,11 @@ if generateNewGraphs:
 
 tbaNetwork.PlotDDist(projection = 'partners')
 dseq_score = tbaNetwork.DegreeSequence(projection='allianceScore')
-centrality_score = tbaNetwork.Centrality(projection = 'allianceScore',
+centrality_score = tbaNetwork.Centrality(
+                                         projection = 'default',
                                          print_top_nodes =20,
-                                         mode = 'eigenvector')
+                                         mode = 'eigenvector',
+                                         )
 centrality_test = tbaNetwork.Centrality('frc2826', projection = 'allianceScore')
 
 
