@@ -24,12 +24,17 @@ if generateNewGraphs:
     event_network = True
     
     year = '2015'
-    event = '2019cmpmi'
+    event = '2018cmpmi'
     
     ## Build Network
     tic = time.time()
-    if year_network: tbaNetwork = TBA_Network(year = year)
-    elif event_network: tbaNetwork = TBA_Network(event = event)
+    if year_network:
+        network_name = year
+        tbaNetwork = TBA_Network(year = year)
+    elif event_network:
+        network_name = event
+        tbaNetwork = TBA_Network(event = event)
+        
     toc = time.time()
     print('Build Time =', toc - tic)
 
@@ -47,11 +52,14 @@ if generateNewGraphs:
 # centrality_test = tbaNetwork.Centrality('frc2826', projection = 'allianceScore')
 
 
-nx.draw(tbaNetwork.GraphProjections(
-                                    alliancePartners=0,
-                                    qual_elim_only=1))
+# nx.draw(tbaNetwork.GraphProjections(
+#                                     alliancePartners=0,
+#                                     qual_elim_only=1))
 # 
 
+projName = 'default_elim'
 
-
+# fig, ax = plt.subplots(figsize = [100,100])
+tbaNetwork.DrawGraph(projName)#'default_qual', layout = 'circular')
+# plt.saveFig('fig/' + 'NetworkPlot_' + network_name + '_' + projName)
 

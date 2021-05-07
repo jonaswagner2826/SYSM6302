@@ -12,7 +12,6 @@ import networkx as nx
 import itertools
 import TBA_database_access as tba
 import numpy as np
-import os.path
 from os import path
 import matplotlib.pyplot as plt
 import time
@@ -231,15 +230,42 @@ class TBA_Network:
         
         # Projection Graphs (Generated and saved as attributes)
         print('Generating Projections')
-        self.GraphProjections(NodeMeta = self.nodeMeta) #Default Projection
+        self.GraphProjections() #Default Projection
         
         
     
     # Projection Graphs
     def GetProjection(self, projection = 'none', qual_elim_only = 0):
+        """
+        Get specific projection based on the name.
+
+        Parameters
+        ----------
+        projection : str, optional
+            Specific projection to be used. The default is 'none'.
+                default = match = matches = default calc w/ all alliance partners
+                partners = default calc with only partners
+                allianceScore = score calc with alliance partners
+                + _qual = only qual matches
+                + _elim = only elim matches
+
+        Returns
+        -------
+        G : TYPE
+            DESCRIPTION.
+
+        """
         if projection != 'none':
+            print('Getting Projection:', projection)
             alliancePartners = 0
             weightCalc = 'default'
+            qual_elim_only = 0
+            # Seperate by qual/elim
+            if projection[-5:] in {'_qual', '_elim'}:
+                if projection[-5:] == '_qual': qual_elim_only = -1
+                elif projection[-5:] == '_elim': qual_elim_only = 1
+                projection = projection[0:-5]
+            # Seperate by weight/alliancePartners
             if projection in {'match','matches','default'}:
                 pass # Default values
             elif projection in {'partners'}:
@@ -249,6 +275,8 @@ class TBA_Network:
             elif projection in {'allianceScore'}:
                 alliancePartners = 1
                 weightCalc = 'score'
+            elif projection in {'exists', 'score', 'default'}:
+                weightCalc = projection
             else:
                 print('using default projection')
             G = self.GraphProjections(alliancePartners,
@@ -256,7 +284,7 @@ class TBA_Network:
                                       qual_elim_only)
         else:
             G = self.G
-            return G
+        return G
     
     
     
@@ -277,13 +305,14 @@ class TBA_Network:
             Calculation settings:
                 ('default')     - Total Matches (Default)
                 ('exists')      - Weight = 1
-                ('MarginSum')   - Win Margin Sum 
-                ('MarginSub')   - Win Margin Subtractive (if opponents subtract)
-                ('MarginSubAvg')- Win Margin Subtractive Average (if opponents subtract)
-                ('MarginSumAvg')- Win Margin Sum Average
-                ('ScoreSum')    - Score of Alliance (or Max) Sum
-                ('ScoreSub')    - Score of Alliances Subtractive
-                ('ScoreAvg')    - Score of Alliances (or avg of each) Average
+                ('score')       - alliance score if parnters, total of both if all matches (error if opponents)
+                # ('MarginSum')   - Win Margin Sum 
+                # ('MarginSub')   - Win Margin Subtractive (if opponents subtract)
+                # ('MarginSubAvg')- Win Margin Subtractive Average (if opponents subtract)
+                # ('MarginSumAvg')- Win Margin Sum Average
+                # ('ScoreSum')    - Score of Alliance (or Max) Sum
+                # ('ScoreSub')    - Score of Alliances Subtractive
+                # ('ScoreAvg')    - Score of Alliances (or avg of each) Average
         qual_elim_only : int
             Indication of if a match type should be restricted
                 -1 = include only quals
@@ -383,8 +412,6 @@ class TBA_Network:
         weightCalc : str
             Method to be used to calculate the weight between two nodes.
                 default = total number of edges (matchs in common)
-                default_partners = number of matchs together as partners
-                default_opponents = number of matches together as opponents
                 exists = 1 if connection exists
                 score = alliance score if parnters, total of both if all matches
                     (error if opponents)
@@ -404,8 +431,6 @@ class TBA_Network:
         
         matches = self.G[team1][team2]
         keys = list(matches)
-        print('here')
-        print(keys)
         # Qual/Elim
         if alliancePartners != 0:
             if alliancePartners == 1:
@@ -415,22 +440,19 @@ class TBA_Network:
                 keys = [key for key in keys if
                         {matches[key]['alliancePartners']} <= {'opponent'}]
 
-        
-        if qual_elim_only != 0:
-            
-            print(keys)
-            for key in keys:print({matches[key]['comp_level']})
-            
+
+        # Comp Level        
+        if qual_elim_only != 0:            
             if qual_elim_only == 1:
                 keys = [key for key in keys if
                         {matches[key]['comp_level']} <= {'qf','sf','f'}]
             elif qual_elim_only == -1:
                 keys = [key for key in keys if
                         {matches[key]['comp_level']} <= {'qm'}]
-            print(keys)
-                  
+        # No matches?
         if len(keys) == 0: return 0
         
+        # Calcuation based on setting
         if weightCalc == 'default':
             return len(keys)
         elif weightCalc == 'exists':
@@ -477,11 +499,9 @@ class TBA_Network:
             return self.edgeKeys
         else:
             return -1 #not coded yet
-    
-    
+
     # Centrality Metrics
     def Centrality(self, node = -1, projection = 'none',
-                   qual_elim_only = 0,
                    mode = 'degree',
                    print_top_nodes = -1):
         """
@@ -496,43 +516,22 @@ class TBA_Network:
                 default = match = matches = default calc w/ all alliance partners
                 partners = default calc with only partners
                 allianceScore = score calc with alliance partners
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+                + _qual = only qual matches
+                + _elim = only elim matches
         mode : TYPE, optional
-            DESCRIPTION. The default is 'degree'.
-        print_top_nodes : TYPE, optional
-            DESCRIPTION. The default is -1.
+            Centrality calculation type. The default is 'degree'.
+        print_top_nodes : int, optional
+            How many of the tope nodes to be printed.
+            The default is -1 = none printed
 
         Returns
         -------
-        TYPE
-            DESCRIPTION.
+        centrality_vector
+            Vector (or single value) of the nodes centralities
 
         """
         
-        if projection != 'none':
-            alliancePartners = 0
-            weightCalc = 'default'
-            if projection in {'match','matches','default'}:
-                pass # Default values
-            elif projection in {'partners'}:
-                alliancePartners = 1
-            elif projection in {'opponents'}:
-                alliancePartners = -1
-            elif projection in {'allianceScore'}:
-                alliancePartners = 1
-                weightCalc = 'score'
-            else:
-                print('using default projection')
-            G = self.GraphProjections(alliancePartners,
-                                      weightCalc,
-                                      qual_elim_only)
-        else:
-            G = self.G
-        
+        G = self.GetProjection(projection = projection)
         
         if mode == 'degree':
             centrality_vector = nx.degree_centrality(G)
@@ -560,8 +559,6 @@ class TBA_Network:
             return centrality_vector
         else:
             return centrality_vector[node]
-        
-        return 
     
     def Diameter(self, projection = 'none',
                  qual_elim_only = 0):
@@ -575,11 +572,8 @@ class TBA_Network:
                 default = match = matches = default calc w/ all alliance partners
                 partners = default calc with only partners
                 allianceScore = score calc with alliance partners
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+                + _qual = only qual matches
+                + _elim = only elim matches
 
         Returns
         -------
@@ -587,25 +581,8 @@ class TBA_Network:
 
         """
         
-        if projection != 'none':
-            alliancePartners = 0
-            weightCalc = 'default'
-            if projection in {'match','matches','default'}:
-                pass # Default values
-            elif projection in {'partners'}:
-                alliancePartners = 1
-            elif projection in {'opponents'}:
-                alliancePartners = -1
-            elif projection in {'allianceScore'}:
-                alliancePartners = 1
-                weightCalc = 'score'
-            else:
-                print('using default projection')
-            G = self.GraphProjections(alliancePartners,
-                                      weightCalc,
-                                      qual_elim_only)
-        else:
-            G = self.G
+        G = self.GetProjection(projection = projection,
+                               qual_elim_only = qual_elim_only)
         
         try:
             diameter = nx.diameter(G)
@@ -614,23 +591,20 @@ class TBA_Network:
         
         return diameter
     
-    
-    
     # Network Structure Dists
-    def DegreeSequence(self, projection = 'none', qual_elim_only = 0):
+    def DegreeSequence(self, projection = 'none'):
         """
         DEGREESEQUENCE returns a sorted list with team keys and degreese
 
         Parameters
         ----------
         projection : str, optional
-            Network Projection to use.
-            The default is 'none', meaning all edges
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+            Specific projection to be used. The default is 'none'.
+                default = match = matches = default calc w/ all alliance partners
+                partners = default calc with only partners
+                allianceScore = score calc with alliance partners
+                + _qual = only qual matches
+                + _elim = only elim matches
         
 
         Returns
@@ -640,47 +614,26 @@ class TBA_Network:
 
         """
 
-        if projection != 'none':
-            alliancePartners = 0
-            weightCalc = 'default'
-            if projection in {'match','matches','default'}:
-                pass # Default values
-            elif projection in {'partners'}:
-                alliancePartners = 1
-            elif projection in {'opponents'}:
-                alliancePartners = -1
-            elif projection in {'score','allianceScore'}:
-                alliancePartners = 1
-                weightCalc = 'score'
-            else:
-                print('using default projection')
-            G = self.GraphProjections(alliancePartners,
-                                      weightCalc,
-                                      qual_elim_only)
-        else:
-            G = self.G
+        G = self.GetProjection(projection = projection)
         
         return sorted([(n,d) for n, d in G.degree()],
                       reverse=True, # Highest degree at top
                       key = lambda x: x[1], # Sort based on degree
                       )
     
-    
-    
-    def DegreeDist(self, projection = 'none', qual_elim_only = 0):
+    def DegreeDist(self, projection = 'none'):
         """
         DEGREEDIST returns a list of the degree distribution
 
         Parameters
         ----------
         projection : str, optional
-            What network projection to use.
-            The default is 'none' (meaning all edges).
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+            Specific projection to be used. The default is 'none'.
+                default = match = matches = default calc w/ all alliance partners
+                partners = default calc with only partners
+                allianceScore = score calc with alliance partners
+                + _qual = only qual matches
+                + _elim = only elim matches
              
         Returns
         -------
@@ -688,7 +641,7 @@ class TBA_Network:
             Degree distribution of the degree of each node
 
         """
-        degSeq = self.DegreeSequence(projection, qual_elim_only)
+        degSeq = self.DegreeSequence(projection = projection)
         degSeq = sorted([d for n, d in degSeq], reverse=True)
         
         ddist = np.zeros(int(max(degSeq) + 1))
@@ -696,35 +649,30 @@ class TBA_Network:
             ddist[k] += 1
 
         return ddist
-        
-    
     
     # Ploting and Analysis Functions
-    def PlotDDist(self, projection = 'none', qual_elim_only = 0):
+    def PlotDDist(self, projection = 'none'):
         """
         
 
         Parameters
         ----------
         projection : str, optional
-            Graph Projection to Plot.
-            The default is 'none'.
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+            Specific projection to be used. The default is 'none'.
+                default = match = matches = default calc w/ all alliance partners
+                partners = default calc with only partners
+                allianceScore = score calc with alliance partners
+                + _qual = only qual matches
+                + _elim = only elim matches
 
         Returns
         -------
         None.
 
         """
-        dseq = self.DegreeSequence(projection = projection,
-                                   qual_elim_only = qual_elim_only)
+        dseq = self.DegreeSequence(projection = projection)
         dseq = sorted([d for n, d in dseq], reverse=True)
-        ddist = self.DegreeDist(projection = projection,
-                                qual_elim_only = qual_elim_only)
+        ddist = self.DegreeDist(projection = projection)
        
         cdist = [ddist[k:].sum()  for k in range(len(ddist))] 
         
@@ -758,72 +706,68 @@ class TBA_Network:
         plt.savefig('fig/' + 'DegreeDist_' 
                     + self.filename[17:] + '_' + str(projection))
         
-     
     # Visualization
-    def DrawGraph(self, projection = 'none', qual_elim_only = 0):
+    def DrawGraph(self, projection = 'none',
+                  layout = -1, ax = -1,
+                  with_labels = True,
+                  node_size = 200,
+                  font_size = 5,
+                  linewidths = 0.8,
+                  figsize = [10,10]):
         """
-        
+        Draw a simple projection of using built in commands
 
         Parameters
         ----------
         projection : str, optional
-            Graph Projection to Plot.
-            The default is 'none'.
-        qual_elim_only : int
-            Indication of if a match type should be restricted
-                -1 = include only quals
-                0 = include all matches
-                1 = include only elims
+            Specific projection to be used. The default is 'none'.
+                default = match = matches = default calc w/ all alliance partners
+                partners = default calc with only partners
+                allianceScore = score calc with alliance partners
+                + _qual = only qual matches
+                + _elim = only elim matches
+        layout : str, optional
+            
 
         Returns
         -------
-        None.
+        ax : axis that the plot is saved in
 
         """
         
+        if str(ax) == str(-1):
+            fig, ax = plt.subplots(figsize = figsize)
+            saveFig = True
+        else:
+            saveFig = False
+
+        G = self.GetProjection(projection = projection)
         
-        if str(ax) == -1:
-            fig, ax = plt.subplots()
+        if str(layout) == str(-1): pos = nx.spring_layout(G)
+        elif str(layout) == 'random': pos = nx.random_layout(G)
+        elif str(layout) == 'shell': pos = nx.shell_layout(G)
+        elif str(layout) == 'spring': pos = nx.spring_layout(G)
+        elif str(layout) == 'circular': pos = nx.circular_layout(G)
         
-        G_proj = self.GraphProjections()
+        print('Generating Network Plot:', str(projection))
         
-        dseq = self.DegreeSequence(projection = projection,
-                                   qual_elim_only = qual_elim_only)
-        dseq = sorted([d for n, d in dseq], reverse=True)
-        ddist = self.DegreeDist(projection = projection,
-                                qual_elim_only = qual_elim_only)
-       
-        cdist = [ddist[k:].sum()  for k in range(len(ddist))] 
+        nx.draw(G, pos = pos, ax = ax,
+                with_labels = with_labels,
+                node_size = node_size,
+                font_size = font_size,
+                linewidths = linewidths,
+                )
         
-        kmin = int(0.9 * min(dseq)) # not all the way to zero
-        kmax = int(max(dseq))
-        
-        # Assign Values for Ploting
-        xvalues = range(kmin,kmax);
-        barheights = ddist[kmin:kmax] # Degree Dist
-        yvalues = cdist[kmin:kmax]; # Cumulative Dist
-        
-        fig, axes = plt.subplots(2,1,sharex=True)
-        
-        # Plot 
-        axes[0].bar(xvalues,barheights, width=0.8, bottom=0, color='b')
-        # plt.autoscale('True')
-        
-        # Plot cdist
-        axes[1].loglog(xvalues,yvalues)
-        plt.grid(True)
-        
-        # Title and labels
-        axes[1].set_xlabel('Degree')
-        
-        axes[0].set_title('Network: '
-                          + self.filename[17:] + '\n'
-                          + ' Projection: '
-                          + projection)
+        ax.set_title('Network: '
+                        + self.filename[17:] + '\n'
+                        + ' Projection: '
+                        + projection)
         
         # Save Fig
-        plt.savefig('fig/' + 'DegreeDist_' 
-                    + self.filename[17:] + '_' + str(projection))
+        if saveFig:
+            plt.savefig('fig/' + 'NetworkPlot_'
+                        + self.filename[17:]
+                        + '_' + str(projection))
     
     
     
