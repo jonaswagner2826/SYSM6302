@@ -28,6 +28,7 @@ if runFromScratch:
     
     # Debuging tools
     import time
+    import pandas as pd
 
 
 if generateNewGraphs:
@@ -35,7 +36,7 @@ if generateNewGraphs:
     event_network = True
     
     year = '2015'
-    event = '2015hop'
+    event = '2015wimi'
     
     ## Build Network
     tic = time.time()
@@ -45,30 +46,50 @@ if generateNewGraphs:
     print('Build Time =', toc - tic)
 
 
-Projections = ['default', 'partners', 'opponents', 'allianceScore']
-Qual_elim_only = [-1, 0, 1]
+Projections = ['default']#, 'default_qual', 'default_elim']#, 'partners', 'opponents', 'allianceScore']
 CentralityModes = ['degree', 'eigenvector', 'katz']
 print_top_nodes = 10
 
+
+sameAxis = True
+if sameAxis:
+    fig, Axes = plt.subplots(2*len(Projections),1,
+                             # sharex = True,
+                             figsize = [15,30],
+                             )
+    fig.suptitle('Network: ' + tbaNetwork.filename[17:])
+    fig.tight_layout(rect=[0, 0.03, 1, 0.98])
+
+
+
+
+CentralityData = dict()
 print('---------------------------------------------------------------------')
 try: print('Full network diamter = ', tbaNetwork.Diameter())
 except: print('Diameter error... not fully connected components')
 print('---------------------------------------------------------------------')
-for projection in Projections:
-    for qual_elim_only in Qual_elim_only:
-        print('---------------------------------------------------------')
-        print('projection = ' + projection + '  &  ' +
-              'qual_elim_only = ' + str(qual_elim_only))
-        
-        print('---------------------------------------------------------')
-        tbaNetwork.PlotDDist(projection = projection)
-        print('Diameter = ', tbaNetwork.Diameter(projection=projection,
-                                                 ))        
-        print('----------------------------------------------')
-        for mode in CentralityModes:
-            tbaNetwork.Centrality(projection = projection,
-                                  mode = mode,
-                                  print_top_nodes = print_top_nodes)
-        
+for i, projection in enumerate(Projections):
+    print('---------------------------------------------------------')
+    print('projection = ' + projection)
+    
+    print('---------------------------------------------------------')
+    if sameAxis: axes = Axes[2*i:2*i+2]
+    else: axes = -1
+    tbaNetwork.PlotDDist(projection = projection, axes = axes)
+    
+    axes[0].set_title('Projection: ' + projection)
+    
+
+    
+    print('Diameter = ', tbaNetwork.Diameter(projection=projection)  )      
+    print('----------------------------------------------')
+    tempDict = dict()
+    for mode in CentralityModes:
+        tempDict[mode] = tbaNetwork.Centrality(projection = projection,
+                                               mode = mode,
+                                               print_top_nodes = print_top_nodes)
+    CentralityData[projection] = tempDict
+    
+if sameAxis: fig.savefig('fig/' + 'DegreeDist_' + tbaNetwork.filename[17:])
 
 

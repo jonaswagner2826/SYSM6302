@@ -35,6 +35,8 @@ layout = 'spring'
 year_network = False
 event_network = True
 
+
+
 # network_keys = list()
 # for year in range(2003,2020):
 #     key = str(year) + 'cmp'
@@ -47,7 +49,7 @@ event_network = True
 #     else:
 #         network_keys.append(key)
 # print(network_keys)
-network_keys = ['2015hop']
+network_keys = ['2008wi']
 
 proj_base = ['default']#, 'partners', 'opponents', 'allianceScore']
 proj_tail = ['','_qual','_elim']
@@ -61,10 +63,10 @@ plt.rcParams.update({'font.size':20})
 plt.rc('figure', titlesize = 50)
 if num_proj == 1:
     fig, axes = plt.subplots(4, 5, figsize = [35,25])
-    fig.suptitle('Eienstien Matches 2003-2019')
+    fig.suptitle('Einstein Matches 2003-2019')
 elif num_keys == 1:
     fig, axes = plt.subplots(3,1, figsize = [10,20])
-    fig.suptitle('2015 Hopper Sub-Division')
+    fig.suptitle('Network: ' + network_keys[0])
 else:
     fig, axes = plt.subplots(num_proj, num_keys, figsize = [5*num_keys,5*num_proj])
 
@@ -87,10 +89,14 @@ for i, key in enumerate(network_keys):
         j = i - k * int(num_keys/4)
         t += 1
         print(k,j)
+        ax = axes[k,j]
         tbaNetwork.DrawGraph(projection = proj_base[0] + proj_tail[0],
                                  layout = layout,
-                                 ax = axes[k,j],
+                                 ax = ax,
                                  )
+        ax.set_title('Network: ' + tbaNetwork.filename[17:] + '\n'
+                             + 'Diameter: ' + str(tbaNetwork.Diameter(
+                                 projection = proj_base[0] + proj_tail[0])))
     elif num_keys == 1:
         for j, base in enumerate(proj_base):
             for k, tail in enumerate(proj_tail):
@@ -109,12 +115,12 @@ for i, key in enumerate(network_keys):
                                      ax = axes[i*len(proj_base)*len(proj_tail),
                                                j*len(proj_tail) + k],
                                      )
+                
             
 
-# fig.savefig('fig/' + 'NetworkPlot_' + 'cmp_2003_2019')
+if num_proj == 1: fig.savefig('fig/' + 'NetworkPlot_' + 'cmp_2003_2019')# + '_' + layout)
 
-
-# fig.savefig('fig/' + 'NetworkPlot_' + '2015hop')
+if num_keys == 1: fig.savefig('fig/' + 'NetworkPlot_' + network_keys[0])# + '_' + layout)
 
 
 # print('---------------------------------------------------------------------')

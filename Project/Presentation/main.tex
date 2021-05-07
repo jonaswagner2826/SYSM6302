@@ -100,6 +100,26 @@
             \parskip 2pt}
 \makeatother
 
+
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\AtBeginSubsection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+
+
+
+
 % Import definitions of command character sequences
 %\input{commands.tex}
 
@@ -134,57 +154,217 @@
 
 \section{Background on FRC Matches}
 \begin{frame}{FIRST Robotics Competition}
-	
+	\begin{columns}
+		\column{0.55\textwidth}
+			\includegraphics[width=\columnwidth]{Images/frc2826_2015}\\
+			{\scriptsize FRC 2826 - Wave Robotics - Oshkosh, WI\\ World Championship Finalists 2015\\}
+		\column{0.55\textwidth}
+			\includegraphics[width=0.4\columnwidth]{Images/frc_logo}
+			{\centering
+			\includegraphics[width=0.8\columnwidth]{Images/frc171_2020}}\\
+			{\scriptsize FRC 171 - The Cheese Curd Herd - Platteville, WI\\ Northern Lights Regional 2020 (Duluth, MI)\\}
+			\vspace{0.2in}
+	\end{columns}
 \end{frame}
 
-\begin{frame}{Current Event Match Structure}
-	
-\end{frame}
+%\begin{frame}{Current Event Match Structure}
+%	
+%\end{frame}
 
 %------------------------------------------------------------
 \section{Data Collection and Network Construction}
 %------------------------------------------------------------
-\begin{frame}{The Blue Alliance}
-	content...
+\begin{frame}{The Blue Alliance}{www.thebluealliance.com   \cite{thebluealliance}}
+	\begin{columns}
+		\column{0.8\textwidth}
+			The Blue Alliance is a very useful online database of past (and current) match data.\\
+			\includegraphics[height=0.5\textheight]{Images/tba_website}
+		\column{0.2\textwidth}
+			\includegraphics[width=\columnwidth]{Images/tba_logo}
+	\end{columns}
 \end{frame}
 
 %------------------------------------
 \subsection{TBA\_Database\_Access.py}
 %------------------------------------
 \begin{frame}{Accessing The Blue Alliance Database}
-	content...
+	\begin{columns}
+		\column{0.55\textwidth}
+			\includegraphics[width=\columnwidth]{Images/tba_database_access_screenshot1}
+		\column{0.55\textwidth}
+			\includegraphics[width=\columnwidth]{Images/tba_database_access_screenshot2}\\
+	%			\includegraphics[width=\columnwidth]{Images/tba_database_access_screenshot3}
+	\end{columns}
 \end{frame}
 
 %-------------------------------------
 \subsection{TBA\_Network\_Analysis.py}
 %--------------------------------------
 \begin{frame}{Network Generation}
-	content...
+	\begin{columns}
+		\column{0.55\textwidth}
+			\includegraphics[width=\columnwidth]{Images/tba_network_analysis_screenshot1}
+		\column{0.55\textwidth}
+			\includegraphics[width=\columnwidth]{Images/tba_network_analysis_screenshot2}
+	\end{columns}
 \end{frame}
 
-\begin{frame}{Network Methods}
-	content...
+%-------------------------------------
+\subsection{Generated Network}
+%--------------------------------------
+\begin{frame}{Multi-Graph Produced}{2015 (my favorite season)}
+	\begin{columns}
+		\column{0.55\textwidth}
+			
+			
+			
+			\begin{itemize}
+				\item Network: Entire 2015 Season
+				\begin{itemize}
+					\item TBA\_Network\_2015.gml
+				\end{itemize} 
+				\item Size: (45 MB)
+				\begin{itemize}
+					\item Nodes: 2,935 Teams
+					\item Total Edges: 195,152
+					\item Distinct Edges: 106,889
+				\end{itemize}
+				\item Components: 1
+				\item Diameter: 4
+			\end{itemize}
+		\column{0.4\textwidth}
+		\includegraphics[height=1\textheight]{../fig/NetworkPlot_2015}
+	\end{columns}
 \end{frame}
+
+%\begin{frame}{Network Methods}
+%	content...
+%\end{frame}
 
 %--------------------------------------------------------
 \section{Analysis Results}
 %------------------------------------------------------
-\subsection{Basic Analysis on Projections}
+\subsection{Basic Analysis on Event Projections}
 %----------------------------------------
-\begin{frame}{2015 Hopper Sub-Division Analysis}
+\begin{frame}{2015 Wisconsin Regional Analysis}{Milwaukee, WI}
 	\begin{columns}
-		\column{0.5 \textwidth}
-			testing\\
-			s;ldfkaj
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2015wimi}
 		\column{0.3 \textwidth}
-			\includegraphics[height=\textheight]{../fig/NetworkPlot_2015hop}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2015wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2015wimi}
+	\end{columns}
+\end{frame}
+\begin{frame}{2015 Hopper Sub-Division Analysis}{FIRST Championships 2015: St. Louis, MO}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2015hop}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2015hop}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2015hop}
+	\end{columns}
+\end{frame}
+\begin{frame}{2015 Einstein Analysis}{FIRST Championships 2015: St. Louis, MO}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2015cmp}
+		\column{0.45 \textwidth}
+		\includegraphics[width = \columnwidth]{../fig/DegreeDist_2015cmp}\\
+		\includegraphics[width = \columnwidth]{../fig/NetworkPlot_2015cmp}
+	\end{columns}
+\end{frame}
+%------------------------------------------------------
+\subsection{Evolution of the Wisconsin Regional}
+%----------------------------------------
+\begin{frame}{2003 Midwest Regional Analysis}{Pre-WI Regional: In Evanston, IL}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2003il}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2003il}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2003il}
+	\end{columns}
+\end{frame}
+\begin{frame}{2008 Wisconsin Regional Analysis}{Milwaukee, WI}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2008wi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2008wi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2008wi}
+	\end{columns}
+\end{frame}
+\begin{frame}{2014 Wisconsin Regional Analysis}{Milwaukee, WI}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2014wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2014wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2014wimi}
+	\end{columns}
+\end{frame}
+\begin{frame}{2015 Wisconsin Regional Analysis}{Milwaukee, WI}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2015wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2015wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2015wimi}
+	\end{columns}
+\end{frame}
+\begin{frame}{2016 Wisconsin Regional Analysis}{Milwaukee, WI}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2016wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2016wimi}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2016wimi}
+	\end{columns}
+\end{frame}
+\begin{frame}{2019 Seven-Rivers Regional Analysis}{La Crosse, WI}
+	\begin{columns}
+		\column{0.35 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/Centrality_Screenshot_2019wila}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/DegreeDist_2019wila}
+		\column{0.3 \textwidth}
+		\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_2019wila}
 	\end{columns}
 \end{frame}
 
+%------------------------------------------------------------------------
+\subsection{Evolution of Elimination Rounds}
+%-----------------------------------------------------------------------
+\begin{frame}{Einstein (Championship) Matches}
+	\includegraphics[height=0.85\textheight]{../fig/NetworkPlot_cmp_2003_2019}
+\end{frame}
+\begin{frame}{Einstein (Championship) Matches}
+	\centering
+	\includegraphics[height=0.9\textheight]{../fig/NetworkPlot_cmp_2003_2019_shell}
+\end{frame}
+
+%--------------------------------------------
+\begin{frame}{Ending}
+	Thanks for listening...\\
+	I hope it was was interesting...\\
+	Any Questions?
+\end{frame}
 
 
-
-%\input{title.tex}
-%\input{slides.tex}
-%\input{bibliography.tex}
+\begin{frame}[allowframebreaks]{Bibliography}
+	Bibliography isn't showing up????
+	\begin{itemize}
+		\item The Blue Alliance: https://www.thebluealliance.com/
+		\item networkx
+	\end{itemize}
+	\bibliographystyle{unsrt}
+	\bibliography{bibliography.bib}
+\end{frame}
 \end{document}

@@ -55,9 +55,13 @@ class TBA_Network:
     G_default : nx.Graph
         nx.Graph that is the default weighted undirected projection representing
         the total number of edges that connects them.
+    G_----- : nx.Graphs
+        many additional projections will be saved to the network class itself
     
     Methods
     -------
+    GetProjection(self, projection = 'none')
+        Locates or generates a specific projection
     GraphProjections(self, alliancePartners = 0, weightCalc = 'default')
         Generates undirected weighted projections of the network with weighting
         calculated acording to specific parameters.
@@ -68,8 +72,18 @@ class TBA_Network:
     MatchKeys(self)
         Method that returns a list of match keys
     
-    ..... More need to be added for network analysis
-    
+    Centrality(self, node=-1, projection='none', mode='degree', print_top_nodes=-1)
+        Calculates the a particular centrality metric fo a specified projection
+    Diameter(self, projection='none')
+        Calculates the diameter of a particular projection
+    DegreeSequence(self, projection = 'none')
+        Returns a sorted list with team keys and degrees
+    DegreeDist(self, projection='none')
+        Returns a list of the degree distribution
+    PlotDDist(self, projection='none', axes=-1)
+        Plots a Degree Distribution for a particular projection
+    DrawGraph(self, projection='none', -------)
+        Draw a simple projection of the graph using built in commands
     
     """
     
@@ -232,10 +246,8 @@ class TBA_Network:
         print('Generating Projections')
         self.GraphProjections() #Default Projection
         
-        
-    
     # Projection Graphs
-    def GetProjection(self, projection = 'none', qual_elim_only = 0):
+    def GetProjection(self, projection = 'none'):
         """
         Get specific projection based on the name.
 
@@ -285,7 +297,6 @@ class TBA_Network:
         else:
             G = self.G
         return G
-    
     
     
     def GraphProjections(self, alliancePartners = 0,
@@ -478,9 +489,6 @@ class TBA_Network:
         else:
             print('not coded yet')    
 
-
-
-
     # Output parameters
     def TeamKeys(self):
         """
@@ -505,7 +513,7 @@ class TBA_Network:
                    mode = 'degree',
                    print_top_nodes = -1):
         """
-        
+        Calculates the a particular centrality metric fo a projection
 
         Parameters
         ----------
@@ -556,14 +564,13 @@ class TBA_Network:
             print('----------------------')
         
         if node == -1:
-            return centrality_vector
+            return dict(centrality_vector)
         else:
             return centrality_vector[node]
     
-    def Diameter(self, projection = 'none',
-                 qual_elim_only = 0):
+    def Diameter(self, projection = 'none'):
         """
-        
+        Calculates the diameter of a particular projection
 
         Parameters
         ----------
@@ -581,8 +588,7 @@ class TBA_Network:
 
         """
         
-        G = self.GetProjection(projection = projection,
-                               qual_elim_only = qual_elim_only)
+        G = self.GetProjection(projection = projection)
         
         try:
             diameter = nx.diameter(G)
@@ -594,7 +600,7 @@ class TBA_Network:
     # Network Structure Dists
     def DegreeSequence(self, projection = 'none'):
         """
-        DEGREESEQUENCE returns a sorted list with team keys and degreese
+        DEGREESEQUENCE returns a sorted list with team keys and degrees
 
         Parameters
         ----------
@@ -651,9 +657,9 @@ class TBA_Network:
         return ddist
     
     # Ploting and Analysis Functions
-    def PlotDDist(self, projection = 'none'):
+    def PlotDDist(self, projection = 'none', axes = -1):
         """
-        
+        Plots a Degree Distribution for a particular projection
 
         Parameters
         ----------
@@ -667,9 +673,11 @@ class TBA_Network:
 
         Returns
         -------
-        None.
+        ax  : ploted axis
 
         """
+
+            
         dseq = self.DegreeSequence(projection = projection)
         dseq = sorted([d for n, d in dseq], reverse=True)
         ddist = self.DegreeDist(projection = projection)
@@ -684,9 +692,15 @@ class TBA_Network:
         barheights = ddist[kmin:kmax] # Degree Dist
         yvalues = cdist[kmin:kmax]; # Cumulative Dist
         
-        fig, axes = plt.subplots(2,1,sharex=True)
         
-        # Plot 
+        if str(axes) == str(-1):
+            fig, axes = plt.subplots(2,1,sharex=True)
+            saveFig = True
+        else:
+            saveFig = False
+        
+        # Plot
+        axes[0].get_shared_x_axes().join(axes[0],axes[1])
         axes[0].bar(xvalues,barheights, width=0.8, bottom=0, color='b')
         # plt.autoscale('True')
         
@@ -703,8 +717,11 @@ class TBA_Network:
                           + projection)
         
         # Save Fig
-        plt.savefig('fig/' + 'DegreeDist_' 
-                    + self.filename[17:] + '_' + str(projection))
+        if saveFig:
+            plt.savefig('fig/' + 'DegreeDist_' 
+                        + self.filename[17:] + '_' + str(projection))
+        
+        return axes
         
     # Visualization
     def DrawGraph(self, projection = 'none',
@@ -715,7 +732,7 @@ class TBA_Network:
                   linewidths = 0.8,
                   figsize = [10,10]):
         """
-        Draw a simple projection of using built in commands
+        Draw a simple projection of the graph using built in commands
 
         Parameters
         ----------
@@ -769,7 +786,7 @@ class TBA_Network:
                         + self.filename[17:]
                         + '_' + str(projection))
     
-    
+        return ax
     
 
 
