@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Background on FRC Matches}{2}{0}{1}
+\beamer@sectionintoc {2}{Data Collection and Network Construction}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{TBA\_Database\_Access.py}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{TBA\_Network\_Analysis.py}{6}{0}{2}
+\beamer@sectionintoc {3}{Analysis Results}{8}{0}{3}
+\beamer@subsectionintoc {3}{1}{Basic Analysis on Projections}{8}{0}{3}

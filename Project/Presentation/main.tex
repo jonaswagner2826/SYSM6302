@@ -1,0 +1,190 @@
+\documentclass[10pt]{beamer}
+\usepackage[english]{babel}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{caption}[numbered]
+\usefonttheme[onlymath]{serif}
+\usetheme{Dallas}
+\mode<presentation>
+\setlength{\textwidth}{4.25in}
+\parindent=0pt
+\setlength{\parskip}{8pt}
+\renewcommand{\baselinestretch}{1.0}
+
+% Import graphics packages, set the graphics path
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{multimedia}
+
+\usepackage{changepage}
+
+% Get rid of the navigation buttons
+\setbeamertemplate{navigation symbols}{}
+
+% % Add extra space under footnotes to make room for navigation buttons
+% \addtobeamertemplate{footnote}{}{\vspace{2ex}}
+
+% Import math packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs} % to use mathscr
+\usepackage{dsfont}
+\usepackage{physics}
+
+% \usepackage[algo2e,ruled,vlined]{algorithm2e}
+% \usepackage[]{algorithm2e}
+\usepackage[ruled, vlined, linesnumbered, noend]{algorithm2e}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{mathtools}
+
+% Import packages for square, diamong, .. cirlces
+\usepackage{fdsymbol}
+
+% Define theorem-like environments
+
+
+\SetKw{Return}{Return}
+\SetKw{Find}{Find}
+\SetKw{Define}{Define}
+
+% Place the UTD logo in the frame titles
+\usepackage{textpos}
+\addtobeamertemplate{frametitle}{}{%
+\begin{textblock*}{30mm}(.90\textwidth,-0.78cm)
+% \includegraphics[height=0.7cm]{UT_Dallas_White.eps}
+\end{textblock*}}
+\addtobeamertemplate{frametitle}{}{%
+\begin{textblock*}{30mm}(.73\textwidth,-0.75cm)
+% \includegraphics[height=0.63cm]{conlab_logo_white_on_transparent.png}
+% .73\textwidth: affects horizontal placement
+% -0.75cm affects vertical placement
+% [height=0.63cm] affects size of the image
+\end{textblock*}}
+
+% \begin{textblock*}{30mm}(.90\textwidth,-0.78cm)
+% \includegraphics[height=0.7cm]{}
+% \end{textblock*}
+
+% Set the block styles
+% Green
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{block body}{use=structure,fg=black,bg=structure.fg!3}
+% Orange
+% \setbeamercolor{block title}{use=structure,fg=white,bg=structure.bg}
+% \setbeamercolor{block body}{use=structure,fg=black,bg=structure.bg!3}
+
+% Navigation Stuff
+\addtobeamertemplate{navigation symbols}{}{%
+	\usebeamerfont{footline}%
+	\usebeamercolor[fg]{footline}%
+	\hspace{1em}%
+	\insertframenumber/\inserttotalframenumber
+}
+
+
+% Set the itemize-like environment styles
+\setbeamercolor{item}{fg=structure.fg,bg=structure.bg}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{enumerate items}[square]
+
+% Change the itemize-like environment spacings
+\makeatletter
+\def\@listI{\leftmargin\leftmargini
+            \parsep 1pt
+            \topsep 1pt
+            \itemsep 1pt
+            \parskip 2pt}
+\makeatother
+
+% Import definitions of command character sequences
+%\input{commands.tex}
+
+
+
+
+
+
+%Logo and Image Packages
+\usepackage{graphicx}
+\logo{\includegraphics[width=1.5in]{Images/UT_Dallas_Logo}}
+
+%Additional Packages
+\usepackage{physics}
+\usepackage{setspace}
+
+%Presentation Info
+\title[Network Analysis of FRC Matches]{Match Structures Changes as the FIRST Robotics Competition Program Evolved}
+\subtitle{Network Analysis of FRC Matches}
+\author{Jonas Wagner}
+\institute[UTDallas]{Univeristy of Texas at Dallas}
+\date[2021-05-07]{SYSM 6302 Final Project\\ 2021 May 7th}
+
+
+
+
+% The whole document
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{Background on FRC Matches}
+\begin{frame}{FIRST Robotics Competition}
+	
+\end{frame}
+
+\begin{frame}{Current Event Match Structure}
+	
+\end{frame}
+
+%------------------------------------------------------------
+\section{Data Collection and Network Construction}
+%------------------------------------------------------------
+\begin{frame}{The Blue Alliance}
+	content...
+\end{frame}
+
+%------------------------------------
+\subsection{TBA\_Database\_Access.py}
+%------------------------------------
+\begin{frame}{Accessing The Blue Alliance Database}
+	content...
+\end{frame}
+
+%-------------------------------------
+\subsection{TBA\_Network\_Analysis.py}
+%--------------------------------------
+\begin{frame}{Network Generation}
+	content...
+\end{frame}
+
+\begin{frame}{Network Methods}
+	content...
+\end{frame}
+
+%--------------------------------------------------------
+\section{Analysis Results}
+%------------------------------------------------------
+\subsection{Basic Analysis on Projections}
+%----------------------------------------
+\begin{frame}{2015 Hopper Sub-Division Analysis}
+	\begin{columns}
+		\column{0.5 \textwidth}
+			testing\\
+			s;ldfkaj
+		\column{0.3 \textwidth}
+			\includegraphics[height=\textheight]{../fig/NetworkPlot_2015hop}
+	\end{columns}
+\end{frame}
+
+
+
+
+%\input{title.tex}
+%\input{slides.tex}
+%\input{bibliography.tex}
+\end{document}

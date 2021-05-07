@@ -1,0 +1,205 @@
+% Command definitions
+% \def\i {\iota}
+% mathbb
+\def\bbb{\mathbb B}
+\def\bbn{\mathbb N}
+\def\bbz{\mathbb Z}
+\def\bbq{\mathbb Q}
+\def\bbr{\mathbb R}
+\def\bbc{\mathbb C}
+\def\bbs{\mathbb S}
+\def\bbp{\mathbb P}
+\def\bbe{\mathbb E}
+%  mathbf
+\def\bfx{\mathbf X}
+\def\bfr{\mathbf R}
+\def\bfs{\mathbf S}
+% mathcal
+\def\calx{\mathcal X}
+\def\calu{\mathcal U}
+\def\calr{\mathcal R}
+\def\calp{\mathcal P}
+\def\caln{\mathcal N}
+\def\calf{\mathcal F}
+\def\cali{\mathcal I}
+\def\cald{\mathcal D}
+\def\calo{\mathcal O}
+\def\calc{\mathcal C}
+\def\calt{\mathcal T}
+\def\cals{\mathcal S}
+% mathscr
+\def\scrr{\mathscr R}
+\def\scrp{\mathscr P}
+\def\scrx{\mathscr X}
+\def\scrt{\mathscr T}
+
+
+
+%======== Abbreviations ==========================
+\newcommand{\Max}{\max\limits_}
+\newcommand{\Min}{\min\limits_}
+\newcommand{\Sup}{\sup\limits_}
+\newcommand{\Inf}{\inf\limits_}
+
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\UU}{\mathbb{U}}
+\newcommand{\NN}{\mathbb{N}}
+
+\newcommand{\Ru}{\overline {\R}}
+\newcommand{\Rl}{\underline {\R}}
+\newcommand{\borel}{\mathfrak{B}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\Llra}{\Longleftrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\ua}{\uparrow}
+\newcommand{\rra}{\rightrightarrows}
+\newcommand{\ora}{\protect\overrightarrow}
+
+
+\newcommand{\ind}{\mathds{1}}
+\newcommand{\Let}{: =}
+\newcommand{\teL}{= :}
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\mn}{\wedge}
+\newcommand{\mx}{\vee}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wb}{\widebar}
+\newcommand{\shift}{\vartheta}
+\newcommand{\com}{\circ}
+\newcommand{\tp}{\intercal}
+\newcommand{\opt}{\star}
+\newcommand{\ball}[2]{\mathsf{B}_{#2}(#1)}		%{\mathbb{B}\left(#1;#2\right)}
+\newcommand{\ballC}{\overline{\mathsf{B}}}
+\newcommand{\ballO}{\mathsf{B}}
+\newcommand{\bigO}{\mathcal{O}}
+
+\newcommand{\eqsmall}[1]{{\small $#1$}}
+\newcommand{\goodgap}{\hspace{\subfigtopskip}}
+
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\esup}{esssup}
+\newcommand{\conv}{\mathsf{conv}}
+
+
+\DeclareMathOperator{\vect}{vec}
+% \DeclareMathOperator{\Tr}{Tr}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\RRT}{RRT}
+\newcommand{\RRTs}{RRT*}
+\newcommand{\ransrrt}{RANS-RRT*}
+
+
+% Colors
+\newcommand{\bbar}[1]{\bar{\bar{#1}}}
+\renewcommand{\r}[1]{{\color{red}{#1}}}
+\renewcommand{\b}[1]{{\color{blue}{#1}}}
+\newcommand{\p}[1]{{\color{purple}{#1}}}
+\newcommand{\g}[1]{{\color{OliveGreen}{#1}}}
+
+
+%  Math 
+\newcommand{\trnsp}[1]{{#1}^T}
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\invpar}[1]{\left ( {#1} \right) ^{-1}}
+\newcommand{\invbrack}[1]{\left [ {#1} \right ] ^{-1}}
+
+\newcommand{\absval}[1]{\mid {#1} \mid}
+\newcommand{\innerprod}[1]{\langle {#1} \rangle}
+% \newcommand{\norm}[1]{\left\lVert {#1} \right\rVert}
+\newcommand{\rlbrack}[1]{\left [ {#1} \right]}
+\newcommand{\rlbrace}[1]{\left \{ {#1}  \right\}}
+\newcommand{\rlpar}[1]{\left ( {#1} \right)}
+
+\newcommand{\matg}{\succ}
+\newcommand{\matl}{\prec}
+\newcommand{\matgeq}{\succeq}
+\newcommand{\matleq}{\preceq}
+
+\newcommand{\mean}[1]{\overline{{#1}}}
+\newcommand{\expect}[1]{\bbe \rlbrack{{#1}}}
+
+
+
+% Temporal Logic Operators
+% Until
+\newcommand{\until}[2]{\mathscr{U}_{[{#1},{#2}]}} % until with closed interval [a,b]
+\newcommand{\untilI}[1]{\mathscr{U}_{{#1}}} % until with interval I
+% Eventually
+\newcommand{\finally}[2]{\mathscr{F}_{[{#1},{#2}]}} % eventually operator as F (finally) with closed interval [a,b]
+\newcommand{\finallyI}[1]{\mathscr{F}_{#1}} % eventually operator as F (finally) with interval I
+\newcommand{\eventually}[2]{\diamondsuit_{[{#1},{#2}]}} % eventually operator as a rhombus with closed interval [a,b]
+% Always
+\newcommand{\globally}[2]{\mathscr{G}_{[{#1},{#2}]}} % always operator as G (globally) with closed interval [a,b]
+\newcommand{\globallyI}[1]{\mathscr{G}_{#1}} % always operator as G (finally) with interval I
+\newcommand{\always}[2]{\square_{[{#1},{#2}]}} % always operator as a square with closed interval [a,b]
+
+% Gaussian Distribution
+\newcommand{\gaussd}[2]{\mathcal{N}\rlpar{{#1}, {#2}}} 
+
+
+%======== Theorems and Definitions ==========================
+% \newtheorem{lemma}{Lemma}
+% \newtheorem{remark}{Remark}
+% \newtheorem{prop}{Proposition}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{corollary}{Corollary}
+% \newtheorem{conjecture}{Conjecture}
+% \newtheorem{assump}{Assumption}
+% \theoremstyle{definition}
+% \newtheorem{example}{Example}
+% \newtheorem{problem}{Problem}
+% \newtheorem{definition}{Definition}
+
+
+\newtheorem{lemmaN}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{prop}{Proposition \propnumber}
+\newtheorem{theoremN}{Theorem}
+\newtheorem{corollaryN}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{assump}{Assumption}
+\theoremstyle{definition}
+\newtheorem{examp}{Example}
+\newtheorem{problemN}{Problem}
+\newtheorem{definitionN}{Definition}
+
+\newcommand{\propnumber}{} % initialize
+\newenvironment{propc}[1]
+  {\renewcommand{\propnumber}{#1}%
+   \begin{prop}}
+  {\end{prop}}
+\newtheorem{exercise}{Exercise}
+
+
+\DeclareMathOperator{\reshape}{reshape}
+\DeclareMathOperator{\gare}{gare}
+
+% Double underscore without spaces i.e. for writing Python __init__, __main__, etc.
+\newlength\dunder
+\settowidth{\dunder}{\_}
+\newcommand{\twound}{\rule{2\dunder}{0.4pt}}
+
+% Bold rich color
+% Green
+\def\bgr{\em\bf\color{UTDseafoam!75!UTDgreen}} % light green
+\def\bdgr{\em\bf\color{UTDseafoam!50!UTDgreen}} % dark green
+% Orange
+\def\bor{\em\bf\color{UTDorange!50!orange}} % orange
+% Math version of bor and bdgr
+\def\mor{\color{UTDorange!50!UTDorange}} % orange
+\def\mdgr{\color{UTDseafoam!50!UTDgreen}} % green
+\def\mdsf{\color{UTDseafoam!50!UTDseafoam}} % seafoam

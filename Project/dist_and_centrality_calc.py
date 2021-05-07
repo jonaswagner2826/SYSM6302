@@ -61,15 +61,12 @@ for projection in Projections:
               'qual_elim_only = ' + str(qual_elim_only))
         
         print('---------------------------------------------------------')
-        tbaNetwork.PlotDDist(projection = projection,
-                             qual_elim_only = qual_elim_only)
+        tbaNetwork.PlotDDist(projection = projection)
         print('Diameter = ', tbaNetwork.Diameter(projection=projection,
-                                                 qual_elim_only=qual_elim_only,
                                                  ))        
         print('----------------------------------------------')
         for mode in CentralityModes:
             tbaNetwork.Centrality(projection = projection,
-                                  qual_elim_only = qual_elim_only,
                                   mode = mode,
                                   print_top_nodes = print_top_nodes)
         

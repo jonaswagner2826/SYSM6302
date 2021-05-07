@@ -1,0 +1,58 @@
+\begin{thebibliography}{10}
+
+\bibitem{vandenberghe2012convex}
+Lieven Vandenberghe.
+\newblock Convex optimization techniques in system identification.
+\newblock {\em IFAC Proceedings Volumes}, 45(16):71--76, 2012.
+
+\bibitem{Soderstrom1988System}
+T.~S\"{o}derstr\"{o}m and P.~Stoica.
+\newblock {\em System Identification}.
+\newblock Prentice-Hall, Inc., USA, 1988.
+
+\bibitem{Ljung1986System}
+Lennart Ljung.
+\newblock {\em System Identification: Theory for the User}.
+\newblock Prentice-Hall, Inc., USA, 1986.
+
+\bibitem{ravikumar2008highdimensional}
+Pradeep Ravikumar, Martin~J. Wainwright, Garvesh Raskutti, and Bin Yu.
+\newblock High-dimensional covariance estimation by minimizing
+  $\ell_1$-penalized log-determinant divergence, 2008.
+
+\bibitem{andersen2011interior}
+Martin Andersen, Joachim Dahl, Zhang Liu, Lieven Vandenberghe, S~Sra,
+  S~Nowozin, and SJ~Wright.
+\newblock Interior-point methods for large-scale cone programming.
+\newblock {\em Optimization for machine learning}, 5583, 2011.
+
+\bibitem{burer2003nonlinear}
+Samuel Burer and Renato~DC Monteiro.
+\newblock A nonlinear programming algorithm for solving semidefinite programs
+  via low-rank factorization.
+\newblock {\em Mathematical Programming}, 95(2):329--357, 2003.
+
+\bibitem{brunton_l1_sparse}
+Steve Brunton.
+\newblock Sparsity and the l1 norm.
+
+\bibitem{prox_grad_slides}
+Neal Parikh and Stephen Boyd.
+\newblock Proximal algorithms.
+
+\bibitem{parikh2014proximal}
+Neal Parikh and Stephen Boyd.
+\newblock Proximal algorithms.
+\newblock {\em Foundations and Trends in optimization}, 1(3):127--239, 2014.
+
+\bibitem{beck2009gradient}
+Amir Beck and Marc Teboulle.
+\newblock Gradient-based algorithms with applications to signal recovery.
+\newblock {\em Convex optimization in signal processing and communications},
+  pages 42--88, 2009.
+
+\bibitem{admm_slides}
+Stephen Boyd.
+\newblock Alternating direction method of multipliers.
+
+\end{thebibliography}

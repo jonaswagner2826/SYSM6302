@@ -24,7 +24,7 @@ if generateNewGraphs:
     event_network = True
     
     year = '2015'
-    event = '2018cmpmi'
+    event = '2015hop'
     
     ## Build Network
     tic = time.time()
@@ -57,7 +57,7 @@ if generateNewGraphs:
 #                                     qual_elim_only=1))
 # 
 
-projName = 'default_elim'
+projName = 'default'
 
 # fig, ax = plt.subplots(figsize = [100,100])
 tbaNetwork.DrawGraph(projName)#'default_qual', layout = 'circular')
