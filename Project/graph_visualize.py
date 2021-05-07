@@ -50,9 +50,7 @@ Qual_elim_only = [-1, 0, 1]
 CentralityModes = ['degree', 'eigenvector', 'katz']
 print_top_nodes = 10
 
-print('---------------------------------------------------------------------')
-try: print('Full network diamter = ', tbaNetwork.Diameter())
-except: print('Diameter error... not fully connected components')
+
 print('---------------------------------------------------------------------')
 for projection in Projections:
     for qual_elim_only in Qual_elim_only:
@@ -65,7 +63,7 @@ for projection in Projections:
                              qual_elim_only = qual_elim_only)
         print('Diameter = ', tbaNetwork.Diameter(projection=projection,
                                                  qual_elim_only=qual_elim_only,
-                                                 ))        
+                                                 ))
         print('----------------------------------------------')
         for mode in CentralityModes:
             tbaNetwork.Centrality(projection = projection,

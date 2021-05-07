@@ -231,14 +231,39 @@ class TBA_Network:
         
         # Projection Graphs (Generated and saved as attributes)
         print('Generating Projections')
-        self.GraphProjections() #Default Projection
+        self.GraphProjections(NodeMeta = self.nodeMeta) #Default Projection
         
         
     
     # Projection Graphs
+    def GetProjection(self, projection = 'none', qual_elim_only = 0):
+        if projection != 'none':
+            alliancePartners = 0
+            weightCalc = 'default'
+            if projection in {'match','matches','default'}:
+                pass # Default values
+            elif projection in {'partners'}:
+                alliancePartners = 1
+            elif projection in {'opponents'}:
+                alliancePartners = -1
+            elif projection in {'allianceScore'}:
+                alliancePartners = 1
+                weightCalc = 'score'
+            else:
+                print('using default projection')
+            G = self.GraphProjections(alliancePartners,
+                                      weightCalc,
+                                      qual_elim_only)
+        else:
+            G = self.G
+            return G
+    
+    
+    
     def GraphProjections(self, alliancePartners = 0,
                          weightCalc = 'default',
                          qual_elim_only = 0,
+                         NodeMeta = ['nickname', 'name', 'state_prov', 'country'],
                          ):
         """
         GRAPHPROJECTIONS generates a projection of the nx.multigraph as
@@ -279,6 +304,11 @@ class TBA_Network:
                 attrName += '_partners'
             elif alliancePartners == -1:
                 attrName += '_opponents'
+        if qual_elim_only != 0:
+            if qual_elim_only == -1:
+                attrName += '_quals'
+            elif qual_elim_only == 1:
+                attrName += '_elims'
         
         projectionFilename = self.filename + '_' + attrName[2:] + '.gml'
         # Test and load if exists
@@ -300,23 +330,34 @@ class TBA_Network:
             print('Generating new projection:')
             # Initialize Graph object
             G_projection = nx.Graph(alliancePartners = alliancePartners,
-                                    weightCalc = weightCalc)
+                                    weightCalc = weightCalc,
+                                    qual_elim_only = qual_elim_only)
             
             # Edge Tuple Generation
             G_projection_tuples = list()
             for team1, team2 in itertools.combinations(self.G.nodes(),2):
                 if self.G.has_edge(team1, team2):
                     weight = self.WeightCalc(team1, team2,
-                                             alliancePartners, weightCalc)
+                                             alliancePartners = alliancePartners,
+                                             weightCalc = weightCalc,
+                                             qual_elim_only = qual_elim_only)
                     if weight >= 1:
                         G_projection_tuples.append((team1, team2, weight))
                         
             # Generate Edges
             G_projection.add_weighted_edges_from(G_projection_tuples)
             
+            # Insert attributes
+            for nodeMeta in NodeMeta:
+                nx.set_node_attributes(G_projection,
+                                       nx.get_node_attributes(self.G, nodeMeta),
+                                       nodeMeta)
+                # for team in G_projection.nodes():
+                #     G_projection[team][attrName] = Attr[team]
+            
             # Save Projection Graph
             print('Saving Projection to: ', projectionFilename)
-            nx.write_gml(projectionFilename)
+            nx.write_gml(G_projection, projectionFilename)
             
             # Set as attribute
             setattr(self, attrName, G_projection)
@@ -363,7 +404,8 @@ class TBA_Network:
         
         matches = self.G[team1][team2]
         keys = list(matches)
-        
+        print('here')
+        print(keys)
         # Qual/Elim
         if alliancePartners != 0:
             if alliancePartners == 1:
@@ -373,16 +415,19 @@ class TBA_Network:
                 keys = [key for key in keys if
                         {matches[key]['alliancePartners']} <= {'opponent'}]
 
-
+        
         if qual_elim_only != 0:
+            
+            print(keys)
+            for key in keys:print({matches[key]['comp_level']})
+            
             if qual_elim_only == 1:
-                keys = [key for key in list(matches) if
-                        {matches[key]['comp_level']} <= {'qf1','sf1','f1'}]
+                keys = [key for key in keys if
+                        {matches[key]['comp_level']} <= {'qf','sf','f'}]
             elif qual_elim_only == -1:
-                keys = [key for key in list(matches) if
-                        {matches[key]['comp_level']} <= {'q'}]
-        else:
-            keys = list(matches)
+                keys = [key for key in keys if
+                        {matches[key]['comp_level']} <= {'qm'}]
+            print(keys)
                   
         if len(keys) == 0: return 0
         
@@ -410,11 +455,6 @@ class TBA_Network:
         
         else:
             print('not coded yet')    
-
-
-    # Save and Import Network
-    def ImportGML(filename):
-        pass
 
 
 
@@ -567,8 +607,10 @@ class TBA_Network:
         else:
             G = self.G
         
-        
-        diameter = nx.diameter(G)
+        try:
+            diameter = nx.diameter(G)
+        except:
+            diameter = '\infty'
         
         return diameter
     
@@ -716,7 +758,72 @@ class TBA_Network:
         plt.savefig('fig/' + 'DegreeDist_' 
                     + self.filename[17:] + '_' + str(projection))
         
+     
+    # Visualization
+    def DrawGraph(self, projection = 'none', qual_elim_only = 0):
+        """
         
+
+        Parameters
+        ----------
+        projection : str, optional
+            Graph Projection to Plot.
+            The default is 'none'.
+        qual_elim_only : int
+            Indication of if a match type should be restricted
+                -1 = include only quals
+                0 = include all matches
+                1 = include only elims
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        
+        if str(ax) == -1:
+            fig, ax = plt.subplots()
+        
+        G_proj = self.GraphProjections()
+        
+        dseq = self.DegreeSequence(projection = projection,
+                                   qual_elim_only = qual_elim_only)
+        dseq = sorted([d for n, d in dseq], reverse=True)
+        ddist = self.DegreeDist(projection = projection,
+                                qual_elim_only = qual_elim_only)
+       
+        cdist = [ddist[k:].sum()  for k in range(len(ddist))] 
+        
+        kmin = int(0.9 * min(dseq)) # not all the way to zero
+        kmax = int(max(dseq))
+        
+        # Assign Values for Ploting
+        xvalues = range(kmin,kmax);
+        barheights = ddist[kmin:kmax] # Degree Dist
+        yvalues = cdist[kmin:kmax]; # Cumulative Dist
+        
+        fig, axes = plt.subplots(2,1,sharex=True)
+        
+        # Plot 
+        axes[0].bar(xvalues,barheights, width=0.8, bottom=0, color='b')
+        # plt.autoscale('True')
+        
+        # Plot cdist
+        axes[1].loglog(xvalues,yvalues)
+        plt.grid(True)
+        
+        # Title and labels
+        axes[1].set_xlabel('Degree')
+        
+        axes[0].set_title('Network: '
+                          + self.filename[17:] + '\n'
+                          + ' Projection: '
+                          + projection)
+        
+        # Save Fig
+        plt.savefig('fig/' + 'DegreeDist_' 
+                    + self.filename[17:] + '_' + str(projection))
     
     
     

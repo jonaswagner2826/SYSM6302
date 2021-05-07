@@ -24,7 +24,7 @@ if generateNewGraphs:
     event_network = True
     
     year = '2015'
-    event = '2015cmp'
+    event = '2019cmpmi'
     
     ## Build Network
     tic = time.time()
@@ -37,18 +37,20 @@ if generateNewGraphs:
 # dseq = tbaNetwork.DegreeSequence(projection = 'matches')#projection = 'partners')
 # ddist = tbaNetwork.DegreeDist('matches')
 
-tbaNetwork.PlotDDist(projection = 'partners')
-dseq_score = tbaNetwork.DegreeSequence(projection='allianceScore')
-centrality_score = tbaNetwork.Centrality(
-                                         projection = 'default',
-                                         print_top_nodes =20,
-                                         mode = 'eigenvector',
-                                         )
-centrality_test = tbaNetwork.Centrality('frc2826', projection = 'allianceScore')
+# tbaNetwork.PlotDDist(projection = 'partners')
+# dseq_score = tbaNetwork.DegreeSequence(projection='allianceScore')
+# centrality_score = tbaNetwork.Centrality(
+#                                          projection = 'default',
+#                                          print_top_nodes =20,
+#                                          mode = 'eigenvector',
+#                                          )
+# centrality_test = tbaNetwork.Centrality('frc2826', projection = 'allianceScore')
 
 
-
-
+nx.draw(tbaNetwork.GraphProjections(
+                                    alliancePartners=0,
+                                    qual_elim_only=1))
+# 
 
 
 
