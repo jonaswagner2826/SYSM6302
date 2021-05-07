@@ -8,5 +8,5 @@ recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\
 
 [main]
 version = 0.2.0
-recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\\TBA_Network_Analysis.py']
+recent_files = ['Project\\test.py', 'Project\\TBA_database_access.py', 'Project\\TBA_Network_Analysis.py', 'Project\\dist_and_centrality_calc.py', 'Project\\graph_visualize.py']
 

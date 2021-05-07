@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  7 MAY 2021 06:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  7 MAY 2021 15:18
 entering extended mode
 **./main.tex
 (main.tex
@@ -1158,24 +1158,24 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1233,7 +1233,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-Package hyperref Info: Link coloring OFF on input line 150.
+Package hyperref Info: Link coloring OFF on input line 140.
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1247,9 +1247,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count357
 )
-LaTeX Info: Redefining \ref on input line 150.
-LaTeX Info: Redefining \pageref on input line 150.
-LaTeX Info: Redefining \nameref on input line 150.
+LaTeX Info: Redefining \ref on input line 140.
+LaTeX Info: Redefining \pageref on input line 140.
+LaTeX Info: Redefining \nameref on input line 140.
  (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1290,7 +1290,7 @@ Package caption Info: End \AtBeginDocument code.
 <Images/UT_Dallas_Logo.png, id=71, 487.32062pt x 206.27063pt>
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 153.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 143.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1307,7 +1307,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
  <./Images/UT_Dallas_Logo.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 155.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 145.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1325,74 +1325,74 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 <Images/frc2826_2015.jpg, id=122, 2055.68pt x 1361.085pt>
 File: Images/frc2826_2015.jpg Graphic file (type jpg)
 <use Images/frc2826_2015.jpg>
-Package pdftex.def Info: Images/frc2826_2015.jpg  used on input line 168.
+Package pdftex.def Info: Images/frc2826_2015.jpg  used on input line 158.
 (pdftex.def)             Requested size: 168.93205pt x 111.83813pt.
+<Images/frc_logo.png, id=123, 268.00125pt x 189.70876pt>
+File: Images/frc_logo.png Graphic file (type png)
+<use Images/frc_logo.png>
+Package pdftex.def Info: Images/frc_logo.png  used on input line 158.
+(pdftex.def)             Requested size: 67.57178pt x 47.82942pt.
 LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolA/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
+(Font)              scaled to size 5.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolE/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 168
+(Font)              scaled to size 5.0pt on input line 158.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 158
 .
  (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 168
+LaTeX Font Info:    Trying to load font information for U+msb on input line 158
 .
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15
 8.
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolB/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
+(Font)              scaled to size 5.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolC/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
+(Font)              scaled to size 5.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolD/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
+(Font)              scaled to size 5.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 168.
+(Font)              scaled to size 10.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 168.
+(Font)              scaled to size 7.0pt on input line 158.
 LaTeX Font Info:    Font shape `U/FdSymbolF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 168.
-<Images/frc_logo.png, id=123, 268.00125pt x 189.70876pt>
-File: Images/frc_logo.png Graphic file (type png)
-<use Images/frc_logo.png>
-Package pdftex.def Info: Images/frc_logo.png  used on input line 168.
-(pdftex.def)             Requested size: 67.57178pt x 47.82942pt.
+(Font)              scaled to size 5.0pt on input line 158.
 <Images/frc171_2020.jpg, id=124, 1084.05pt x 1084.05pt>
 File: Images/frc171_2020.jpg Graphic file (type jpg)
 <use Images/frc171_2020.jpg>
-Package pdftex.def Info: Images/frc171_2020.jpg  used on input line 168.
+Package pdftex.def Info: Images/frc171_2020.jpg  used on input line 158.
 (pdftex.def)             Requested size: 135.14615pt x 135.142pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 168.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 158.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1410,7 +1410,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 ] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 175.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 165.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1428,16 +1428,16 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 <Images/tba_website.png, id=157, 880.28876pt x 639.89063pt>
 File: Images/tba_website.png Graphic file (type png)
 <use Images/tba_website.png>
-Package pdftex.def Info: Images/tba_website.png  used on input line 185.
+Package pdftex.def Info: Images/tba_website.png  used on input line 175.
 (pdftex.def)             Requested size: 164.2478pt x 119.39282pt.
 <Images/tba_logo.png, id=158, 513.92pt x 513.92pt>
 File: Images/tba_logo.png Graphic file (type png)
 <use Images/tba_logo.png>
-Package pdftex.def Info: Images/tba_logo.png  used on input line 185.
+Package pdftex.def Info: Images/tba_logo.png  used on input line 175.
 (pdftex.def)             Requested size: 61.42856pt x 61.42464pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 185.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 175.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1454,7 +1454,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
  <./Images/tba_website.png> <./Images/tba_logo.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 188.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 178.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1474,17 +1474,17 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 File: Images/tba_database_access_screenshot1.png Graphic file (type png)
 <use Images/tba_database_access_screenshot1.png>
 Package pdftex.def Info: Images/tba_database_access_screenshot1.png  used on in
-put line 198.
+put line 188.
 (pdftex.def)             Requested size: 168.93205pt x 190.18521pt.
 <Images/tba_database_access_screenshot2.png, id=196, 365.365pt x 280.04625pt>
 File: Images/tba_database_access_screenshot2.png Graphic file (type png)
 <use Images/tba_database_access_screenshot2.png>
 Package pdftex.def Info: Images/tba_database_access_screenshot2.png  used on in
-put line 198.
+put line 188.
 (pdftex.def)             Requested size: 168.93205pt x 129.48517pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 198.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 188.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1502,7 +1502,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 creenshot2.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 201.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 191.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1522,18 +1522,18 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 File: Images/tba_network_analysis_screenshot1.png Graphic file (type png)
 <use Images/tba_network_analysis_screenshot1.png>
 Package pdftex.def Info: Images/tba_network_analysis_screenshot1.png  used on i
-nput line 210.
+nput line 200.
 (pdftex.def)             Requested size: 168.93205pt x 196.42274pt.
 <Images/tba_network_analysis_screenshot2.png, id=233, 567.11874pt x 571.13374pt
 >
 File: Images/tba_network_analysis_screenshot2.png Graphic file (type png)
 <use Images/tba_network_analysis_screenshot2.png>
 Package pdftex.def Info: Images/tba_network_analysis_screenshot2.png  used on i
-nput line 210.
+nput line 200.
 (pdftex.def)             Requested size: 168.93205pt x 170.13008pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 210.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 200.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1551,7 +1551,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 _screenshot2.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 213.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 203.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1566,18 +1566,21 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [10
 
 ]
-<../fig/NetworkPlot_2015.png, id=268, 722.7pt x 1445.4pt>
-File: ../fig/NetworkPlot_2015.png Graphic file (type png)
-<use ../fig/NetworkPlot_2015.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2015.png  used on input line 238.
-(pdftex.def)             Requested size: 119.38371pt x 238.78566pt.
-
-Overfull \vbox (22.60007pt too high) detected at line 238
- []
-
+<../fig/NetworkPlot_2015_default.png, id=268, 1084.05pt x 722.7pt>
+File: ../fig/NetworkPlot_2015_default.png Graphic file (type png)
+<use ../fig/NetworkPlot_2015_default.png>
+Package pdftex.def Info: ../fig/NetworkPlot_2015_default.png  used on input lin
+e 227.
+(pdftex.def)             Requested size: 145.89458pt x 97.26254pt.
+<../fig/DegreeDist_2015_default.png, id=269, 433.62pt x 289.08pt>
+File: ../fig/DegreeDist_2015_default.png Graphic file (type png)
+<use ../fig/DegreeDist_2015_default.png>
+Package pdftex.def Info: ../fig/DegreeDist_2015_default.png  used on input line
+ 227.
+(pdftex.def)             Requested size: 153.57375pt x 102.38371pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 238.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 227.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1591,10 +1594,11 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
 [11
 
- <../fig/NetworkPlot_2015.png>] (main.toc)
+ <../fig/NetworkPlot_2015_default.png> <../fig/DegreeDist_2015_default.png>] (m
+ain.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 245.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 234.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1611,7 +1615,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 ] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 247.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 236.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1626,37 +1630,37 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [13
 
 ]
-<../fig/Centrality_Screenshot_2015wimi.png, id=324, 289.08pt x 544.0325pt>
+<../fig/Centrality_Screenshot_2015wimi.png, id=325, 289.08pt x 544.0325pt>
 File: ../fig/Centrality_Screenshot_2015wimi.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2015wimi.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2015wimi.png  used on inp
-ut line 258.
+ut line 247.
 (pdftex.def)             Requested size: 107.85335pt x 202.96925pt.
-<../fig/DegreeDist_2015wimi.png, id=325, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2015wimi.png, id=326, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2015wimi.png Graphic file (type png)
 <use ../fig/DegreeDist_2015wimi.png>
-Package pdftex.def Info: ../fig/DegreeDist_2015wimi.png  used on input line 258
+Package pdftex.def Info: ../fig/DegreeDist_2015wimi.png  used on input line 247
 .
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 258--258
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 247--247
 [][]  
  []
 
-<../fig/NetworkPlot_2015wimi.png, id=326, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2015wimi.png, id=327, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2015wimi.png Graphic file (type png)
 <use ../fig/NetworkPlot_2015wimi.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2015wimi.png  used on input line 25
-8.
+Package pdftex.def Info: ../fig/NetworkPlot_2015wimi.png  used on input line 24
+7.
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 258--258
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 247--247
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 258.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 247.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1672,42 +1676,42 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
  <../fig/Centrality_Screenshot_2015wimi.png> <../fig/DegreeDist_2015wimi.png> <
 ../fig/NetworkPlot_2015wimi.png>]
-<../fig/Centrality_Screenshot_2015hop.png, id=342, 290.58563pt x 544.0325pt>
+<../fig/Centrality_Screenshot_2015hop.png, id=343, 290.58563pt x 544.0325pt>
 File: ../fig/Centrality_Screenshot_2015hop.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2015hop.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2015hop.png  used on inpu
-t line 268.
+t line 257.
 (pdftex.def)             Requested size: 108.41508pt x 202.96925pt.
 
-Overfull \hbox (0.91159pt too wide) in paragraph at lines 268--268
+Overfull \hbox (0.91159pt too wide) in paragraph at lines 257--257
 [][]  
  []
 
-<../fig/DegreeDist_2015hop.png, id=343, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2015hop.png, id=344, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2015hop.png Graphic file (type png)
 <use ../fig/DegreeDist_2015hop.png>
-Package pdftex.def Info: ../fig/DegreeDist_2015hop.png  used on input line 268.
+Package pdftex.def Info: ../fig/DegreeDist_2015hop.png  used on input line 257.
 
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 268--268
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 257--257
 [][]  
  []
 
-<../fig/NetworkPlot_2015hop.png, id=344, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2015hop.png, id=345, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2015hop.png Graphic file (type png)
 <use ../fig/NetworkPlot_2015hop.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2015hop.png  used on input line 268
+Package pdftex.def Info: ../fig/NetworkPlot_2015hop.png  used on input line 257
 .
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 268--268
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 257--257
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 268.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 257.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1723,31 +1727,31 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
  <../fig/Centrality_Screenshot_2015hop.png> <../fig/DegreeDist_2015hop.png> <..
 /fig/NetworkPlot_2015hop.png>]
-<../fig/Centrality_Screenshot_2015cmp.png, id=360, 288.07625pt x 541.52313pt>
+<../fig/Centrality_Screenshot_2015cmp.png, id=361, 288.07625pt x 541.52313pt>
 File: ../fig/Centrality_Screenshot_2015cmp.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2015cmp.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2015cmp.png  used on inpu
-t line 277.
+t line 266.
 (pdftex.def)             Requested size: 107.97557pt x 202.96925pt.
-<../fig/DegreeDist_2015cmp.png, id=361, 1084.05pt x 867.24pt>
+<../fig/DegreeDist_2015cmp.png, id=362, 1084.05pt x 867.24pt>
 File: ../fig/DegreeDist_2015cmp.png Graphic file (type png)
 <use ../fig/DegreeDist_2015cmp.png>
-Package pdftex.def Info: ../fig/DegreeDist_2015cmp.png  used on input line 277.
+Package pdftex.def Info: ../fig/DegreeDist_2015cmp.png  used on input line 266.
 
 (pdftex.def)             Requested size: 138.21542pt x 110.5617pt.
-<../fig/NetworkPlot_2015cmp.png, id=362, 722.7pt x 578.16pt>
+<../fig/NetworkPlot_2015cmp.png, id=363, 722.7pt x 578.16pt>
 File: ../fig/NetworkPlot_2015cmp.png Graphic file (type png)
 <use ../fig/NetworkPlot_2015cmp.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2015cmp.png  used on input line 277
+Package pdftex.def Info: ../fig/NetworkPlot_2015cmp.png  used on input line 266
 .
 (pdftex.def)             Requested size: 138.21542pt x 110.56612pt.
 
-Overfull \vbox (5.94223pt too high) detected at line 277
+Overfull \vbox (5.94223pt too high) detected at line 266
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 277.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 266.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1765,7 +1769,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 /fig/NetworkPlot_2015cmp.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 279.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 268.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1780,36 +1784,36 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [17
 
 ]
-<../fig/Centrality_Screenshot_2003il.png, id=398, 287.57437pt x 542.025pt>
+<../fig/Centrality_Screenshot_2003il.png, id=399, 287.57437pt x 542.025pt>
 File: ../fig/Centrality_Screenshot_2003il.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2003il.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2003il.png  used on input
- line 290.
+ line 279.
 (pdftex.def)             Requested size: 107.68654pt x 202.96925pt.
-<../fig/DegreeDist_2003il.png, id=399, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2003il.png, id=400, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2003il.png Graphic file (type png)
 <use ../fig/DegreeDist_2003il.png>
-Package pdftex.def Info: ../fig/DegreeDist_2003il.png  used on input line 290.
+Package pdftex.def Info: ../fig/DegreeDist_2003il.png  used on input line 279.
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 290--290
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 279--279
 [][]  
  []
 
-<../fig/NetworkPlot_2003il.png, id=400, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2003il.png, id=401, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2003il.png Graphic file (type png)
 <use ../fig/NetworkPlot_2003il.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2003il.png  used on input line 290.
+Package pdftex.def Info: ../fig/NetworkPlot_2003il.png  used on input line 279.
 
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 290--290
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 279--279
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 290.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 279.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1825,41 +1829,41 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
  <../fig/Centrality_Screenshot_2003il.png> <../fig/DegreeDist_2003il.png> <../f
 ig/NetworkPlot_2003il.png>]
-<../fig/Centrality_Screenshot_2008wi.png, id=416, 295.60437pt x 542.52687pt>
+<../fig/Centrality_Screenshot_2008wi.png, id=417, 295.60437pt x 542.52687pt>
 File: ../fig/Centrality_Screenshot_2008wi.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2008wi.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2008wi.png  used on input
- line 300.
+ line 289.
 (pdftex.def)             Requested size: 110.58974pt x 202.96925pt.
 
-Overfull \hbox (3.08624pt too wide) in paragraph at lines 300--300
+Overfull \hbox (3.08624pt too wide) in paragraph at lines 289--289
 [][]  
  []
 
-<../fig/DegreeDist_2008wi.png, id=417, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2008wi.png, id=418, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2008wi.png Graphic file (type png)
 <use ../fig/DegreeDist_2008wi.png>
-Package pdftex.def Info: ../fig/DegreeDist_2008wi.png  used on input line 300.
+Package pdftex.def Info: ../fig/DegreeDist_2008wi.png  used on input line 289.
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 300--300
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 289--289
 [][]  
  []
 
-<../fig/NetworkPlot_2008wi.png, id=418, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2008wi.png, id=419, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2008wi.png Graphic file (type png)
 <use ../fig/NetworkPlot_2008wi.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2008wi.png  used on input line 300.
+Package pdftex.def Info: ../fig/NetworkPlot_2008wi.png  used on input line 289.
 
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 300--300
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 289--289
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 300.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 289.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1875,37 +1879,37 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
  <../fig/Centrality_Screenshot_2008wi.png> <../fig/DegreeDist_2008wi.png> <../f
 ig/NetworkPlot_2008wi.png>]
-<../fig/Centrality_Screenshot_2014wimi.png, id=435, 287.0725pt x 547.54562pt>
+<../fig/Centrality_Screenshot_2014wimi.png, id=436, 287.0725pt x 547.54562pt>
 File: ../fig/Centrality_Screenshot_2014wimi.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2014wimi.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2014wimi.png  used on inp
-ut line 310.
+ut line 299.
 (pdftex.def)             Requested size: 106.41666pt x 202.96925pt.
-<../fig/DegreeDist_2014wimi.png, id=436, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2014wimi.png, id=437, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2014wimi.png Graphic file (type png)
 <use ../fig/DegreeDist_2014wimi.png>
-Package pdftex.def Info: ../fig/DegreeDist_2014wimi.png  used on input line 310
+Package pdftex.def Info: ../fig/DegreeDist_2014wimi.png  used on input line 299
 .
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 310--310
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 299--299
 [][]  
  []
 
-<../fig/NetworkPlot_2014wimi.png, id=437, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2014wimi.png, id=438, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2014wimi.png Graphic file (type png)
 <use ../fig/NetworkPlot_2014wimi.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2014wimi.png  used on input line 31
-0.
+Package pdftex.def Info: ../fig/NetworkPlot_2014wimi.png  used on input line 29
+9.
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 310--310
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 299--299
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 310.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 299.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1924,31 +1928,31 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 File: ../fig/Centrality_Screenshot_2015wimi.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2015wimi.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2015wimi.png  used on inp
-ut line 320.
+ut line 309.
 (pdftex.def)             Requested size: 107.85335pt x 202.96925pt.
 File: ../fig/DegreeDist_2015wimi.png Graphic file (type png)
 <use ../fig/DegreeDist_2015wimi.png>
-Package pdftex.def Info: ../fig/DegreeDist_2015wimi.png  used on input line 320
+Package pdftex.def Info: ../fig/DegreeDist_2015wimi.png  used on input line 309
 .
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 320--320
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 309--309
 [][]  
  []
 
 File: ../fig/NetworkPlot_2015wimi.png Graphic file (type png)
 <use ../fig/NetworkPlot_2015wimi.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2015wimi.png  used on input line 32
-0.
+Package pdftex.def Info: ../fig/NetworkPlot_2015wimi.png  used on input line 30
+9.
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 320--320
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 309--309
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 320.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 309.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -1963,42 +1967,42 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [21
 
 ]
-<../fig/Centrality_Screenshot_2016wimi.png, id=465, 291.58937pt x 542.52687pt>
+<../fig/Centrality_Screenshot_2016wimi.png, id=466, 291.58937pt x 542.52687pt>
 File: ../fig/Centrality_Screenshot_2016wimi.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2016wimi.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2016wimi.png  used on inp
-ut line 330.
+ut line 319.
 (pdftex.def)             Requested size: 109.08768pt x 202.96925pt.
 
-Overfull \hbox (1.58418pt too wide) in paragraph at lines 330--330
+Overfull \hbox (1.58418pt too wide) in paragraph at lines 319--319
 [][]  
  []
 
-<../fig/DegreeDist_2016wimi.png, id=466, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2016wimi.png, id=467, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2016wimi.png Graphic file (type png)
 <use ../fig/DegreeDist_2016wimi.png>
-Package pdftex.def Info: ../fig/DegreeDist_2016wimi.png  used on input line 330
+Package pdftex.def Info: ../fig/DegreeDist_2016wimi.png  used on input line 319
 .
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 330--330
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 319--319
 [][]  
  []
 
-<../fig/NetworkPlot_2016wimi.png, id=467, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2016wimi.png, id=468, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2016wimi.png Graphic file (type png)
 <use ../fig/NetworkPlot_2016wimi.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2016wimi.png  used on input line 33
-0.
+Package pdftex.def Info: ../fig/NetworkPlot_2016wimi.png  used on input line 31
+9.
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 330--330
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 319--319
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 330.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 319.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2014,42 +2018,42 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 
  <../fig/Centrality_Screenshot_2016wimi.png> <../fig/DegreeDist_2016wimi.png> <
 ../fig/NetworkPlot_2016wimi.png>]
-<../fig/Centrality_Screenshot_2019wila.png, id=483, 305.14pt x 542.52687pt>
+<../fig/Centrality_Screenshot_2019wila.png, id=484, 305.14pt x 542.52687pt>
 File: ../fig/Centrality_Screenshot_2019wila.png Graphic file (type png)
 <use ../fig/Centrality_Screenshot_2019wila.png>
 Package pdftex.def Info: ../fig/Centrality_Screenshot_2019wila.png  used on inp
-ut line 340.
+ut line 329.
 (pdftex.def)             Requested size: 114.15715pt x 202.96925pt.
 
-Overfull \hbox (6.65366pt too wide) in paragraph at lines 340--340
+Overfull \hbox (6.65366pt too wide) in paragraph at lines 329--329
 [][]  
  []
 
-<../fig/DegreeDist_2019wila.png, id=484, 1084.05pt x 2168.1pt>
+<../fig/DegreeDist_2019wila.png, id=485, 1084.05pt x 2168.1pt>
 File: ../fig/DegreeDist_2019wila.png Graphic file (type png)
 <use ../fig/DegreeDist_2019wila.png>
-Package pdftex.def Info: ../fig/DegreeDist_2019wila.png  used on input line 340
+Package pdftex.def Info: ../fig/DegreeDist_2019wila.png  used on input line 329
 .
 (pdftex.def)             Requested size: 101.48056pt x 202.96925pt.
 
-Overfull \hbox (9.33539pt too wide) in paragraph at lines 340--340
+Overfull \hbox (9.33539pt too wide) in paragraph at lines 329--329
 [][]  
  []
 
-<../fig/NetworkPlot_2019wila.png, id=485, 722.7pt x 1445.4pt>
+<../fig/NetworkPlot_2019wila.png, id=486, 722.7pt x 1445.4pt>
 File: ../fig/NetworkPlot_2019wila.png Graphic file (type png)
 <use ../fig/NetworkPlot_2019wila.png>
-Package pdftex.def Info: ../fig/NetworkPlot_2019wila.png  used on input line 34
-0.
+Package pdftex.def Info: ../fig/NetworkPlot_2019wila.png  used on input line 32
+9.
 (pdftex.def)             Requested size: 101.47505pt x 202.96925pt.
 
-Overfull \hbox (9.32988pt too wide) in paragraph at lines 340--340
+Overfull \hbox (9.32988pt too wide) in paragraph at lines 329--329
 [][]  
  []
 
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 340.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 329.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2067,7 +2071,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 ../fig/NetworkPlot_2019wila.png>] (main.toc)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 343.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 332.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2082,15 +2086,15 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [24
 
 ]
-<../fig/NetworkPlot_cmp_2003_2019.png, id=521, 1974.37625pt x 1558.82375pt>
+<../fig/NetworkPlot_cmp_2003_2019.png, id=522, 1974.37625pt x 1558.82375pt>
 File: ../fig/NetworkPlot_cmp_2003_2019.png Graphic file (type png)
 <use ../fig/NetworkPlot_cmp_2003_2019.png>
 Package pdftex.def Info: ../fig/NetworkPlot_cmp_2003_2019.png  used on input li
-ne 347.
+ne 336.
 (pdftex.def)             Requested size: 257.06956pt x 202.96925pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 347.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 336.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2105,16 +2109,16 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 [25
 
  <../fig/NetworkPlot_cmp_2003_2019.png>]
-<../fig/NetworkPlot_cmp_2003_2019_shell.png, id=536, 1974.37625pt x 1558.82375p
+<../fig/NetworkPlot_cmp_2003_2019_shell.png, id=537, 1974.37625pt x 1558.82375p
 t>
 File: ../fig/NetworkPlot_cmp_2003_2019_shell.png Graphic file (type png)
 <use ../fig/NetworkPlot_cmp_2003_2019_shell.png>
 Package pdftex.def Info: ../fig/NetworkPlot_cmp_2003_2019_shell.png  used on in
-put line 351.
+put line 340.
 (pdftex.def)             Requested size: 272.19308pt x 214.90562pt.
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 351.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 340.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2131,7 +2135,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
  <../fig/NetworkPlot_cmp_2003_2019_shell.png>]
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 358.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 347.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2148,7 +2152,7 @@ Overfull \hbox (0.14238pt too wide) has occurred while \output is active
 ] (main.bbl)
 File: Images/UT_Dallas_Logo.png Graphic file (type png)
 <use Images/UT_Dallas_Logo.png>
-Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 369.
+Package pdftex.def Info: Images/UT_Dallas_Logo.png  used on input line 358.
 (pdftex.def)             Requested size: 108.405pt x 45.88326pt.
 
 Overfull \hbox (0.14238pt too wide) has occurred while \output is active
@@ -2177,21 +2181,20 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: CC99B7E90E2570A0EF590F27CDBDBBED;1767.
  ) 
 Here is how much of TeX's memory you used:
- 28667 strings out of 479337
- 519039 string characters out of 2857148
- 799528 words of memory out of 3000000
- 45415 multiletter control sequences out of 15000+200000
- 412622 words of font info for 61 fonts, out of 3000000 for 9000
+ 28648 strings out of 479337
+ 518539 string characters out of 2857148
+ 799529 words of memory out of 3000000
+ 45396 multiletter control sequences out of 15000+200000
+ 412316 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,20n,132p,438b,776s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmss10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmss12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmss8.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmss9.pfb>
-Output written on main.pdf (28 pages, 6861246 bytes).
+ublic/amsfonts/cm/cmss8.pfb>
+Output written on main.pdf (28 pages, 6706128 bytes).
 PDF statistics:
- 604 PDF objects out of 1000 (max. 8388607)
+ 602 PDF objects out of 1000 (max. 8388607)
  67 named destinations out of 1000 (max. 500000)
- 388 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 393 words of extra memory for PDF output out of 10000 (max. 10000000)
 

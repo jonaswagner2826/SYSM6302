@@ -118,15 +118,8 @@
 }
 
 
-
-
 % Import definitions of command character sequences
 %\input{commands.tex}
-
-
-
-
-
 
 %Logo and Image Packages
 \usepackage{graphicx}
@@ -143,9 +136,6 @@
 \institute[UTDallas]{Univeristy of Texas at Dallas}
 \date[2021-05-07]{SYSM 6302 Final Project\\ 2021 May 7th}
 
-
-
-
 % The whole document
 \begin{document}
 \begin{frame}
@@ -158,8 +148,8 @@
 		\column{0.55\textwidth}
 			\includegraphics[width=\columnwidth]{Images/frc2826_2015}\\
 			{\scriptsize FRC 2826 - Wave Robotics - Oshkosh, WI\\ World Championship Finalists 2015\\}
-		\column{0.55\textwidth}
 			\includegraphics[width=0.4\columnwidth]{Images/frc_logo}
+		\column{0.55\textwidth}
 			{\centering
 			\includegraphics[width=0.8\columnwidth]{Images/frc171_2020}}\\
 			{\scriptsize FRC 171 - The Cheese Curd Herd - Platteville, WI\\ Northern Lights Regional 2020 (Duluth, MI)\\}
@@ -212,28 +202,27 @@
 %-------------------------------------
 \subsection{Generated Network}
 %--------------------------------------
-\begin{frame}{Multi-Graph Produced}{2015 (my favorite season)}
+\begin{frame}{Full Season Network}{2015 (my favorite season)}
 	\begin{columns}
-		\column{0.55\textwidth}
-			
-			
-			
+		\column{0.6\textwidth}
+			Network: Entire 2015 Season\\
+			{\scriptsize TBA\_Network\_2015.gml (45 MB)}\\
+			{\scriptsize(https://www.thebluealliance.com/events/2015)}
 			\begin{itemize}
-				\item Network: Entire 2015 Season
-				\begin{itemize}
-					\item TBA\_Network\_2015.gml
-				\end{itemize} 
-				\item Size: (45 MB)
-				\begin{itemize}
-					\item Nodes: 2,935 Teams
-					\item Total Edges: 195,152
-					\item Distinct Edges: 106,889
-				\end{itemize}
+				\item Nodes: 2,935 Teams
+				\item Mult-edges: 195,152 Matches
+				\item Edges: 106,889 Unique Matches
 				\item Components: 1
 				\item Diameter: 4
+				\item Clustering Coefficient: 0.635
+				\item Degree Assortativity: 0.296 (0.358)
+				\item Average Degree: 73.49 (132.98)
+				\item Density: 0.02527 (0.04532)
 			\end{itemize}
-		\column{0.4\textwidth}
-		\includegraphics[height=1\textheight]{../fig/NetworkPlot_2015}
+		\column{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.95\columnwidth]{../fig/NetworkPlot_2015_default}\\
+			\includegraphics[width=\columnwidth]{../fig/DegreeDist_2015_default}
 	\end{columns}
 \end{frame}
 
